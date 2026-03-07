@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Referensi CSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #161b27;
+      --surface2: #1e2535;
+      --border: #2a3347;
+      --accent: #f97316;
+      --blue: #4f8ef7;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --red: #f87171;
+      --cyan: #22d3ee;
+      --purple: #a78bfa;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
+    .layout { display: flex; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar { width: 260px; flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border); position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 24px 0; }
+    .sidebar-brand { padding: 0 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+    .sidebar-brand h1 { font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .sidebar-brand p { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+    .sidebar-section { padding: 6px 20px 2px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+    .sidebar a { display: flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: all 0.15s; border-left: 2px solid transparent; }
+    .sidebar a:hover { color: var(--text); background: var(--surface2); }
+    .sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(249,115,22,0.07); }
+    .prop-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; background: var(--surface2); padding: 1px 6px; border-radius: 4px; color: var(--cyan); }
+
+    /* Main */
+    .main { flex: 1; padding: 48px 40px; max-width: 900px; }
+    .page-title { font-size: 2rem; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 48px; }
+
+    .prop-section { margin-bottom: 56px; scroll-margin-top: 24px; }
+    .prop-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .prop-tag { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; color: var(--cyan); background: rgba(34,211,238,0.08); padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(34,211,238,0.2); }
+    .prop-name { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+    .prop-category { margin-left: auto; font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; }
+    .cat-box    { background: rgba(79,142,247,0.12); color: var(--blue); }
+    .cat-text   { background: rgba(167,139,250,0.12); color: var(--purple); }
+    .cat-color  { background: rgba(249,115,22,0.12); color: var(--accent); }
+    .cat-layout { background: rgba(52,211,153,0.12); color: var(--green); }
+    .cat-anim   { background: rgba(251,191,36,0.12); color: var(--yellow); }
+    .cat-sel    { background: rgba(248,113,113,0.12); color: var(--red); }
+    .cat-var    { background: rgba(34,211,238,0.12); color: var(--cyan); }
+
+    .prop-desc { font-size: 0.88rem; color: #94a3b8; margin-bottom: 16px; line-height: 1.7; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 8px; margin-bottom: 20px; }
+    .val-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+    .val-name { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--yellow); margin-bottom: 3px; }
+    .val-desc { font-size: 0.72rem; color: var(--muted); }
+
+    .code-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+    .code-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+    .dots { display: flex; gap: 5px; }
+    .dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .dots span:nth-child(1) { background: #f87171; }
+    .dots span:nth-child(2) { background: #fbbf24; }
+    .dots span:nth-child(3) { background: #34d399; }
+    .copy-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 2px 8px; border-radius: 4px; font-size: 0.68rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.15s; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+    pre { padding: 16px 18px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.8; color: var(--text); }
+
+    /* Syntax highlight */
+    .s  { color: #e879f9; }
+    .p  { color: var(--cyan); }
+    .v  { color: var(--green); }
+    .n  { color: var(--yellow); }
+    .c  { color: #475569; font-style: italic; }
+    .k  { color: var(--purple); }
+    .fn { color: var(--accent); }
+
+    .tip { display: flex; gap: 10px; padding: 12px 14px; border-radius: 8px; font-size: 0.82rem; margin-bottom: 16px; }
+    .tip.info { background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.2); }
+    .tip.warn { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); }
+    .tip.good { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); }
+    .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .tip-text { color: #94a3b8; line-height: 1.6; }
+    .tip-text strong { color: var(--text); }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    .ref-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.82rem; }
+    .ref-table th { text-align: left; padding: 8px 12px; background: var(--surface2); color: var(--muted); font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    .ref-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .pn { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.8rem; }
+    .pd { color: #94a3b8; }
+
+    @media (max-width: 768px) { .sidebar { display: none; } .main { padding: 24px 20px; } }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <h1>{ } Referensi CSS</h1>
+      <p>Properties, nilai &amp; contoh kode</p>
+    </div>
+    <div class="sidebar-section">Box Model</div>
+    <a href="#box-model" class="active"><span class="prop-badge">box</span> Box Model</a>
+    <a href="#margin"><span class="prop-badge">margin</span> Margin</a>
+    <a href="#padding"><span class="prop-badge">padding</span> Padding</a>
+    <a href="#border"><span class="prop-badge">border</span> Border</a>
+    <div class="sidebar-section">Teks &amp; Font</div>
+    <a href="#font"><span class="prop-badge">font-*</span> Font</a>
+    <a href="#text"><span class="prop-badge">text-*</span> Text</a>
+    <a href="#color"><span class="prop-badge">color</span> Color</a>
+    <div class="sidebar-section">Layout</div>
+    <a href="#display"><span class="prop-badge">display</span> Display</a>
+    <a href="#flexbox"><span class="prop-badge">flex</span> Flexbox</a>
+    <a href="#grid"><span class="prop-badge">grid</span> Grid</a>
+    <a href="#position"><span class="prop-badge">position</span> Position</a>
+    <div class="sidebar-section">Ukuran</div>
+    <a href="#sizing"><span class="prop-badge">width</span> Width &amp; Height</a>
+    <a href="#overflow"><span class="prop-badge">overflow</span> Overflow</a>
+    <div class="sidebar-section">Visual</div>
+    <a href="#background"><span class="prop-badge">bg</span> Background</a>
+    <a href="#shadow"><span class="prop-badge">shadow</span> Shadow</a>
+    <a href="#transform"><span class="prop-badge">transform</span> Transform</a>
+    <a href="#transition"><span class="prop-badge">transition</span> Transition</a>
+    <a href="#animation"><span class="prop-badge">@keyframes</span> Animation</a>
+    <div class="sidebar-section">Selector</div>
+    <a href="#selector"><span class="prop-badge">sel</span> Selector</a>
+    <a href="#pseudo"><span class="prop-badge">::</span> Pseudo</a>
+    <a href="#variable"><span class="prop-badge">var()</span> Variables</a>
+  </nav>
+
+  <main class="main">
+    <div class="page-title">Referensi CSS</div>
+    <p class="page-sub">Panduan lengkap properti CSS beserta nilai, fungsi, dan contoh penggunaannya.</p>
+
+    <!-- BOX MODEL -->
+    <section class="prop-section" id="box-model">
+      <div class="prop-header">
+        <span class="prop-tag">Box Model</span>
+        <span class="prop-name">Konsep Dasar CSS</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Setiap elemen HTML adalah sebuah kotak. Box Model terdiri dari 4 lapisan dari dalam ke luar: <strong>content → padding → border → margin</strong>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Visualisasi Box Model</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* ┌─────────── margin ───────────┐ */</span>
+<span class="c">/* │  ┌──────── border ─────────┐ │ */</span>
+<span class="c">/* │  │  ┌───── padding ──────┐ │ │ */</span>
+<span class="c">/* │  │  │  ┌─ content ─┐    │ │ │ */</span>
+<span class="c">/* │  │  │  └───────────┘    │ │ │ */</span>
+<span class="c">/* │  │  └───────────────────┘ │ │ */</span>
+<span class="c">/* │  └─────────────────────────┘ │ */</span>
+<span class="c">/* └─────────────────────────────┘ */</span>
+
+<span class="s">.kotak</span> {
+  <span class="p">width</span>:          <span class="n">200px</span>;
+  <span class="p">padding</span>:        <span class="n">20px</span>;
+  <span class="p">border</span>:         <span class="n">2px</span> <span class="v">solid</span> <span class="v">#333</span>;
+  <span class="p">margin</span>:         <span class="n">16px</span>;
+
+  <span class="c">/* Wajib! Agar width sudah termasuk padding + border */</span>
+  <span class="p">box-sizing</span>:     <span class="v">border-box</span>;
+}</pre>
+      </div>
+      <div class="tip info">
+        <span class="tip-icon">💡</span>
+        <div class="tip-text"><strong>Selalu tambahkan ini di awal CSS:</strong><br><code>* { box-sizing: border-box; }</code> — Agar <code>width</code> sudah mencakup padding dan border, lebih mudah dihitung.</div>
+      </div>
+    </section>
+
+    <!-- MARGIN -->
+    <section class="prop-section" id="margin">
+      <div class="prop-header">
+        <span class="prop-tag">margin</span>
+        <span class="prop-name">Jarak Luar Elemen</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Jarak di luar border elemen. Transparan (tidak berwarna). Nilai negatif diperbolehkan.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="p">margin</span>: <span class="n">20px</span>;                    <span class="c">/* semua sisi */</span>
+  <span class="p">margin</span>: <span class="n">10px</span> <span class="n">20px</span>;               <span class="c">/* atas-bawah | kiri-kanan */</span>
+  <span class="p">margin</span>: <span class="n">10px</span> <span class="n">20px</span> <span class="n">30px</span> <span class="n">40px</span>;    <span class="c">/* atas | kanan | bawah | kiri */</span>
+
+  <span class="p">margin-top</span>:    <span class="n">16px</span>;
+  <span class="p">margin-right</span>:  <span class="n">8px</span>;
+  <span class="p">margin-bottom</span>: <span class="n">16px</span>;
+  <span class="p">margin-left</span>:   <span class="n">8px</span>;
+
+  <span class="c">/* Tengahkan elemen horizontal */</span>
+  <span class="p">margin</span>: <span class="n">0</span> <span class="v">auto</span>;
+}</pre>
+      </div>
+    </section>
+
+    <!-- PADDING -->
+    <section class="prop-section" id="padding">
+      <div class="prop-header">
+        <span class="prop-tag">padding</span>
+        <span class="prop-name">Jarak Dalam Elemen</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Jarak antara content dan border. Padding ikut mewarnai background elemen. Sintaks sama dengan margin.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.kartu</span> {
+  <span class="p">padding</span>: <span class="n">24px</span>;
+  <span class="p">padding</span>: <span class="n">12px</span> <span class="n">24px</span>;
+  <span class="p">padding</span>: <span class="n">8px</span> <span class="n">16px</span> <span class="n">12px</span> <span class="n">16px</span>;
+
+  <span class="p">padding-top</span>:    <span class="n">12px</span>;
+  <span class="p">padding-inline</span>: <span class="n">20px</span>;    <span class="c">/* kiri &amp; kanan (CSS modern) */</span>
+  <span class="p">padding-block</span>:  <span class="n">16px</span>;    <span class="c">/* atas &amp; bawah (CSS modern) */</span>
+}</pre>
+      </div>
+    </section>
+
+    <!-- BORDER -->
+    <section class="prop-section" id="border">
+      <div class="prop-header">
+        <span class="prop-tag">border</span>
+        <span class="prop-name">Garis Tepi Elemen</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Garis tepi di sekitar elemen. Format: <code>ketebalan gaya warna</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.kotak</span> {
+  <span class="p">border</span>: <span class="n">1px</span> <span class="v">solid</span> <span class="v">#ccc</span>;
+  <span class="p">border</span>: <span class="n">2px</span> <span class="v">dashed</span> <span class="v">red</span>;
+  <span class="p">border</span>: <span class="n">3px</span> <span class="v">dotted</span> <span class="v">blue</span>;
+  <span class="p">border</span>: <span class="n">4px</span> <span class="v">double</span> <span class="v">green</span>;
+
+  <span class="p">border-top</span>:    <span class="n">2px</span> <span class="v">solid</span> <span class="v">#000</span>;
+  <span class="p">border-bottom</span>: <span class="n">1px</span> <span class="v">solid</span> <span class="v">#eee</span>;
+
+  <span class="c">/* Sudut membulat */</span>
+  <span class="p">border-radius</span>: <span class="n">8px</span>;       <span class="c">/* semua sudut */</span>
+  <span class="p">border-radius</span>: <span class="n">50%</span>;       <span class="c">/* lingkaran */</span>
+  <span class="p">border-radius</span>: <span class="n">99px</span>;      <span class="c">/* pill / kapsul */</span>
+  <span class="p">border-radius</span>: <span class="n">12px</span> <span class="n">4px</span> <span class="n">12px</span> <span class="n">4px</span>; <span class="c">/* TL TR BR BL */</span>
+}</pre>
+      </div>
+    </section>
+
+    <hr/>
+
+    <!-- FONT -->
+    <section class="prop-section" id="font">
+      <div class="prop-header">
+        <span class="prop-tag">font-*</span>
+        <span class="prop-name">Properti Font</span>
+        <span class="prop-category cat-text">Teks</span>
+      </div>
+      <p class="prop-desc">Mengatur jenis, ukuran, ketebalan, dan gaya font.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">body</span> {
+  <span class="p">font-family</span>:    <span class="v">'Plus Jakarta Sans'</span>, <span class="v">sans-serif</span>;
+  <span class="p">font-size</span>:      <span class="n">16px</span>;    <span class="c">/* atau 1rem (1rem = 16px default) */</span>
+  <span class="p">font-weight</span>:    <span class="n">400</span>;     <span class="c">/* 100-900, normal=400, bold=700 */</span>
+  <span class="p">font-style</span>:     <span class="v">normal</span>; <span class="c">/* normal | italic | oblique */</span>
+  <span class="p">line-height</span>:    <span class="n">1.6</span>;    <span class="c">/* jarak antar baris */</span>
+  <span class="p">letter-spacing</span>: <span class="n">0.5px</span>; <span class="c">/* jarak antar huruf */</span>
+  <span class="p">word-spacing</span>:   <span class="n">2px</span>;    <span class="c">/* jarak antar kata */</span>
+}
+
+<span class="c">/* Shorthand: style weight size/line-height family */</span>
+<span class="s">h1</span> { <span class="p">font</span>: <span class="v">bold</span> <span class="n">2rem</span><span class="v">/1.2</span> <span class="v">'Bebas Neue'</span>, <span class="v">sans-serif</span>; }
+
+<span class="c">/* Import Google Fonts */</span>
+<span class="k">@import</span> <span class="fn">url</span>(<span class="v">'https://fonts.googleapis.com/css2?family=Inter&amp;display=swap'</span>);</pre>
+      </div>
+      <div class="values-grid">
+        <div class="val-item"><div class="val-name">font-weight: 100</div><div class="val-desc">Thin</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 300</div><div class="val-desc">Light</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 400</div><div class="val-desc">Normal / Regular</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 500</div><div class="val-desc">Medium</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 600</div><div class="val-desc">SemiBold</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 700</div><div class="val-desc">Bold</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 800</div><div class="val-desc">ExtraBold</div></div>
+        <div class="val-item"><div class="val-name">font-weight: 900</div><div class="val-desc">Black / Heavy</div></div>
+      </div>
+    </section>
+
+    <!-- TEXT -->
+    <section class="prop-section" id="text">
+      <div class="prop-header">
+        <span class="prop-tag">text-*</span>
+        <span class="prop-name">Properti Teks</span>
+        <span class="prop-category cat-text">Teks</span>
+      </div>
+      <p class="prop-desc">Perataan, dekorasi, transformasi, dan efek teks.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.teks</span> {
+  <span class="p">text-align</span>:      <span class="v">center</span>;     <span class="c">/* left | right | center | justify */</span>
+  <span class="p">text-decoration</span>: <span class="v">underline</span>;  <span class="c">/* none | underline | line-through */</span>
+  <span class="p">text-transform</span>:  <span class="v">uppercase</span>;  <span class="c">/* none | uppercase | lowercase | capitalize */</span>
+  <span class="p">text-indent</span>:     <span class="n">2em</span>;        <span class="c">/* indentasi paragraf */</span>
+  <span class="p">text-overflow</span>:   <span class="v">ellipsis</span>;   <span class="c">/* potong dengan ... */</span>
+  <span class="p">text-shadow</span>:     <span class="n">2px</span> <span class="n">2px</span> <span class="n">4px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.3</span>);
+
+  <span class="p">white-space</span>:     <span class="v">nowrap</span>;     <span class="c">/* tidak wrap baris baru */</span>
+  <span class="p">overflow</span>:        <span class="v">hidden</span>;     <span class="c">/* wajib untuk ellipsis */</span>
+}
+
+<span class="c">/* Potong teks di baris ke-N */</span>
+<span class="s">.clamp-2</span> {
+  <span class="p">display</span>:            <span class="v">-webkit-box</span>;
+  <span class="p">-webkit-line-clamp</span>: <span class="n">2</span>;
+  <span class="p">-webkit-box-orient</span>: <span class="v">vertical</span>;
+  <span class="p">overflow</span>:           <span class="v">hidden</span>;
+}
+
+<span class="c">/* Gradient text */</span>
+<span class="s">.gradient-text</span> {
+  <span class="p">background</span>:              <span class="fn">linear-gradient</span>(<span class="n">135deg</span>, <span class="v">#f97316</span>, <span class="v">#a78bfa</span>);
+  <span class="p">-webkit-background-clip</span>: <span class="v">text</span>;
+  <span class="p">-webkit-text-fill-color</span>: <span class="v">transparent</span>;
+  <span class="p">background-clip</span>:         <span class="v">text</span>;
+}</pre>
+      </div>
+    </section>
+
+    <!-- COLOR -->
+    <section class="prop-section" id="color">
+      <div class="prop-header">
+        <span class="prop-tag">color</span>
+        <span class="prop-name">Format Warna CSS</span>
+        <span class="prop-category cat-color">Warna</span>
+      </div>
+      <p class="prop-desc">CSS mendukung berbagai format warna. <code>hsl</code> paling intuitif, <code>hex</code> paling umum.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Format Warna</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="c">/* Named */</span>
+  <span class="p">color</span>: <span class="v">red</span>;
+  <span class="p">color</span>: <span class="v">transparent</span>;
+
+  <span class="c">/* HEX */</span>
+  <span class="p">color</span>: <span class="v">#ff0000</span>;
+  <span class="p">color</span>: <span class="v">#f00</span>;              <span class="c">/* shorthand */</span>
+  <span class="p">color</span>: <span class="v">#ff000080</span>;         <span class="c">/* + alpha (50% opacity) */</span>
+
+  <span class="c">/* RGB / RGBA */</span>
+  <span class="p">color</span>: <span class="fn">rgb</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>);
+  <span class="p">color</span>: <span class="fn">rgba</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>, <span class="n">0.5</span>);  <span class="c">/* alpha 0-1 */</span>
+
+  <span class="c">/* HSL / HSLA — paling intuitif */</span>
+  <span class="p">color</span>: <span class="fn">hsl</span>(<span class="n">0</span>, <span class="n">100%</span>, <span class="n">50%</span>);
+  <span class="p">color</span>: <span class="fn">hsla</span>(<span class="n">220</span>, <span class="n">90%</span>, <span class="n">60%</span>, <span class="n">0.8</span>);
+
+  <span class="c">/* oklch — format CSS modern */</span>
+  <span class="p">color</span>: <span class="fn">oklch</span>(<span class="n">0.7</span> <span class="n">0.2</span> <span class="n">30</span>);
+}</pre>
+      </div>
+    </section>
+
+    <hr/>
+
+    <!-- DISPLAY -->
+    <section class="prop-section" id="display">
+      <div class="prop-header">
+        <span class="prop-tag">display</span>
+        <span class="prop-name">Tipe Tampilan Elemen</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Menentukan bagaimana elemen ditampilkan. Salah satu properti paling penting di CSS.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Nilai Display</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="p">display</span>: <span class="v">block</span>;        <span class="c">/* penuh selebar parent, mulai baris baru */</span>
+  <span class="p">display</span>: <span class="v">inline</span>;       <span class="c">/* sejajar teks, tidak bisa set w/h */</span>
+  <span class="p">display</span>: <span class="v">inline-block</span>; <span class="c">/* sejajar tapi bisa set w/h */</span>
+  <span class="p">display</span>: <span class="v">flex</span>;         <span class="c">/* flexbox container */</span>
+  <span class="p">display</span>: <span class="v">inline-flex</span>;  <span class="c">/* flex tapi inline */</span>
+  <span class="p">display</span>: <span class="v">grid</span>;         <span class="c">/* grid container */</span>
+  <span class="p">display</span>: <span class="v">none</span>;         <span class="c">/* hilang total dari layout */</span>
+}
+
+<span class="c">/* Perbedaan none vs hidden: */</span>
+<span class="s">.a</span> { <span class="p">display</span>: <span class="v">none</span>; }            <span class="c">/* hilang, tidak ambil ruang */</span>
+<span class="s">.b</span> { <span class="p">visibility</span>: <span class="v">hidden</span>; }       <span class="c">/* tak terlihat, masih ambil ruang */</span>
+<span class="s">.c</span> { <span class="p">opacity</span>: <span class="n">0</span>; }               <span class="c">/* transparan, masih ambil ruang */</span></pre>
+      </div>
+    </section>
+
+    <!-- FLEXBOX -->
+    <section class="prop-section" id="flexbox">
+      <div class="prop-header">
+        <span class="prop-tag">flexbox</span>
+        <span class="prop-name">Flexible Box Layout</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Layout satu dimensi (baris atau kolom). Ideal untuk menata item dalam satu arah dan mengatur alignment.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Container (Parent)</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.container</span> {
+  <span class="p">display</span>:         <span class="v">flex</span>;
+
+  <span class="p">flex-direction</span>:  <span class="v">row</span>;           <span class="c">/* row | column | row-reverse | column-reverse */</span>
+  <span class="p">flex-wrap</span>:       <span class="v">wrap</span>;          <span class="c">/* nowrap | wrap | wrap-reverse */</span>
+
+  <span class="c">/* Main axis (horizontal jika row) */</span>
+  <span class="p">justify-content</span>: <span class="v">space-between</span>; <span class="c">/* flex-start | end | center | space-around | space-evenly */</span>
+
+  <span class="c">/* Cross axis (vertikal jika row) */</span>
+  <span class="p">align-items</span>:     <span class="v">center</span>;        <span class="c">/* flex-start | end | center | stretch | baseline */</span>
+  <span class="p">align-content</span>:   <span class="v">flex-start</span>;    <span class="c">/* untuk multi-baris */</span>
+
+  <span class="p">gap</span>: <span class="n">16px</span>;
+  <span class="p">gap</span>: <span class="n">12px</span> <span class="n">24px</span>;                 <span class="c">/* row-gap | column-gap */</span>
+}</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Item (Child)</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.item</span> {
+  <span class="p">flex</span>:        <span class="n">1</span>;          <span class="c">/* grow shrink basis shorthand */</span>
+  <span class="p">flex</span>:        <span class="n">0 0 200px</span>;  <span class="c">/* tidak grow/shrink, lebar fix 200px */</span>
+  <span class="p">flex-grow</span>:   <span class="n">1</span>;          <span class="c">/* boleh membesar mengisi sisa ruang */</span>
+  <span class="p">flex-shrink</span>: <span class="n">0</span>;          <span class="c">/* tidak boleh mengecil */</span>
+  <span class="p">flex-basis</span>:  <span class="n">200px</span>;      <span class="c">/* ukuran awal */</span>
+
+  <span class="p">align-self</span>:  <span class="v">flex-end</span>;   <span class="c">/* override align-items untuk item ini saja */</span>
+  <span class="p">order</span>:       <span class="n">2</span>;          <span class="c">/* urutan tampil (default 0) */</span>
+}</pre>
+      </div>
+      <div class="tip good">
+        <span class="tip-icon">✅</span>
+        <div class="tip-text"><strong>Centering paling mudah:</strong><br><code>display: flex; justify-content: center; align-items: center;</code></div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="prop-section" id="grid">
+      <div class="prop-header">
+        <span class="prop-tag">grid</span>
+        <span class="prop-name">CSS Grid Layout</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Layout dua dimensi (baris dan kolom). Ideal untuk layout halaman yang kompleks.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.grid</span> {
+  <span class="p">display</span>: <span class="v">grid</span>;
+
+  <span class="c">/* Kolom */</span>
+  <span class="p">grid-template-columns</span>: <span class="n">200px</span> <span class="n">1fr</span> <span class="n">1fr</span>;
+  <span class="p">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="n">3</span>, <span class="n">1fr</span>);
+  <span class="p">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="v">auto-fill</span>, <span class="fn">minmax</span>(<span class="n">200px</span>, <span class="n">1fr</span>)); <span class="c">/* responsif */</span>
+
+  <span class="c">/* Baris */</span>
+  <span class="p">grid-template-rows</span>: <span class="v">auto</span> <span class="n">1fr</span> <span class="v">auto</span>;
+
+  <span class="p">gap</span>: <span class="n">20px</span>;
+}
+
+<span class="c">/* Item menempati beberapa kolom/baris */</span>
+<span class="s">.header</span>  { <span class="p">grid-column</span>: <span class="n">1</span> / <span class="n">-1</span>; }      <span class="c">/* seluruh lebar */</span>
+<span class="s">.sidebar</span> { <span class="p">grid-row</span>: <span class="n">2</span> / <span class="n">4</span>; }         <span class="c">/* span 2 baris */</span>
+<span class="s">.card</span>    { <span class="p">grid-column</span>: <span class="v">span</span> <span class="n">2</span>; }      <span class="c">/* span 2 kolom */</span></pre>
+      </div>
+    </section>
+
+    <!-- POSITION -->
+    <section class="prop-section" id="position">
+      <div class="prop-header">
+        <span class="prop-tag">position</span>
+        <span class="prop-name">Posisi Elemen</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Mengatur bagaimana elemen diposisikan. Dikombinasikan dengan <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, dan <code>z-index</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="p">position</span>: <span class="v">static</span>;    <span class="c">/* default, ikuti aliran normal */</span>
+  <span class="p">position</span>: <span class="v">relative</span>;  <span class="c">/* geser dari posisi normalnya */</span>
+  <span class="p">position</span>: <span class="v">absolute</span>;  <span class="c">/* relatif ke parent yang punya position */</span>
+  <span class="p">position</span>: <span class="v">fixed</span>;     <span class="c">/* tetap di layar saat scroll */</span>
+  <span class="p">position</span>: <span class="v">sticky</span>;   <span class="c">/* relative lalu fixed saat scroll */</span>
+}
+
+<span class="c">/* Overlay di atas elemen lain */</span>
+<span class="s">.parent</span>  { <span class="p">position</span>: <span class="v">relative</span>; }
+<span class="s">.overlay</span> {
+  <span class="p">position</span>: <span class="v">absolute</span>;
+  <span class="p">inset</span>: <span class="n">0</span>;             <span class="c">/* shorthand untuk top/right/bottom/left: 0 */</span>
+  <span class="p">background</span>: <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.5</span>);
+}
+
+<span class="c">/* z-index: urutan tumpukan */</span>
+<span class="s">.modal</span>    { <span class="p">z-index</span>: <span class="n">1000</span>; }
+<span class="s">.dropdown</span> { <span class="p">z-index</span>: <span class="n">100</span>; }</pre>
+      </div>
+    </section>
+
+    <hr/>
+
+    <!-- SIZING -->
+    <section class="prop-section" id="sizing">
+      <div class="prop-header">
+        <span class="prop-tag">width / height</span>
+        <span class="prop-name">Ukuran Elemen</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Mengatur lebar dan tinggi. Mendukung px, %, em, rem, vw, vh, dan fungsi <code>min()</code> <code>max()</code> <code>clamp()</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="p">width</span>:     <span class="n">300px</span>;
+  <span class="p">width</span>:     <span class="n">50%</span>;            <span class="c">/* relatif terhadap parent */</span>
+  <span class="p">width</span>:     <span class="n">100vw</span>;          <span class="c">/* 100% lebar viewport */</span>
+  <span class="p">width</span>:     <span class="fn">min</span>(<span class="n">600px</span>, <span class="n">100%</span>); <span class="c">/* ambil yang lebih kecil */</span>
+
+  <span class="p">height</span>:    <span class="n">200px</span>;
+  <span class="p">height</span>:    <span class="n">100vh</span>;          <span class="c">/* full tinggi layar */</span>
+  <span class="p">height</span>:    <span class="v">auto</span>;
+
+  <span class="p">min-width</span>: <span class="n">200px</span>;
+  <span class="p">max-width</span>: <span class="n">800px</span>;
+  <span class="p">min-height</span>:<span class="n">100vh</span>;
+
+  <span class="c">/* Clamp: min, ideal, max */</span>
+  <span class="p">font-size</span>: <span class="fn">clamp</span>(<span class="n">1rem</span>, <span class="n">4vw</span>, <span class="n">2rem</span>);   <span class="c">/* responsif otomatis */</span>
+  <span class="p">width</span>:     <span class="fn">clamp</span>(<span class="n">300px</span>, <span class="n">50%</span>, <span class="n">600px</span>);
+}</pre>
+      </div>
+      <table class="ref-table">
+        <tr><th>Satuan</th><th>Keterangan</th></tr>
+        <tr><td class="pn">px</td><td class="pd">Pixel, ukuran tetap</td></tr>
+        <tr><td class="pn">%</td><td class="pd">Persen relatif terhadap parent</td></tr>
+        <tr><td class="pn">em</td><td class="pd">Relatif terhadap font-size elemen itu sendiri</td></tr>
+        <tr><td class="pn">rem</td><td class="pd">Relatif terhadap font-size root (html) — lebih konsisten</td></tr>
+        <tr><td class="pn">vw / vh</td><td class="pd">1% dari lebar / tinggi viewport</td></tr>
+        <tr><td class="pn">fr</td><td class="pd">Fraction unit, khusus CSS Grid</td></tr>
+        <tr><td class="pn">ch</td><td class="pd">Lebar karakter "0" pada font aktif</td></tr>
+      </table>
+    </section>
+
+    <!-- OVERFLOW -->
+    <section class="prop-section" id="overflow">
+      <div class="prop-header">
+        <span class="prop-tag">overflow</span>
+        <span class="prop-name">Konten yang Meluber</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Mengatur apa yang terjadi ketika konten melebihi ukuran container.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.kotak</span> {
+  <span class="p">overflow</span>:   <span class="v">visible</span>;  <span class="c">/* default, konten meluber */</span>
+  <span class="p">overflow</span>:   <span class="v">hidden</span>;   <span class="c">/* potong konten */</span>
+  <span class="p">overflow</span>:   <span class="v">scroll</span>;   <span class="c">/* selalu tampilkan scrollbar */</span>
+  <span class="p">overflow</span>:   <span class="v">auto</span>;     <span class="c">/* scrollbar hanya jika perlu */</span>
+
+  <span class="p">overflow-x</span>: <span class="v">auto</span>;     <span class="c">/* hanya horizontal */</span>
+  <span class="p">overflow-y</span>: <span class="v">hidden</span>;   <span class="c">/* hanya vertikal */</span>
+}</pre>
+      </div>
+    </section>
+
+    <hr/>
+
+    <!-- BACKGROUND -->
+    <section class="prop-section" id="background">
+      <div class="prop-header">
+        <span class="prop-tag">background</span>
+        <span class="prop-name">Latar Belakang</span>
+        <span class="prop-category cat-color">Visual</span>
+      </div>
+      <p class="prop-desc">Warna solid, gambar, atau gradient sebagai latar belakang elemen.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="c">/* Warna solid */</span>
+  <span class="p">background-color</span>: <span class="v">#1e2535</span>;
+
+  <span class="c">/* Gambar */</span>
+  <span class="p">background-image</span>:    <span class="fn">url</span>(<span class="v">'foto.jpg'</span>);
+  <span class="p">background-size</span>:     <span class="v">cover</span>;    <span class="c">/* cover | contain | 100px | 50% */</span>
+  <span class="p">background-position</span>: <span class="v">center</span>;
+  <span class="p">background-repeat</span>:   <span class="v">no-repeat</span>;
+
+  <span class="c">/* Linear gradient */</span>
+  <span class="p">background</span>: <span class="fn">linear-gradient</span>(<span class="n">135deg</span>, <span class="v">#667eea</span>, <span class="v">#764ba2</span>);
+  <span class="p">background</span>: <span class="fn">linear-gradient</span>(<span class="v">to right</span>, <span class="v">red</span>, <span class="v">blue</span>);
+
+  <span class="c">/* Radial gradient */</span>
+  <span class="p">background</span>: <span class="fn">radial-gradient</span>(<span class="v">circle</span>, <span class="v">#f97316</span>, <span class="v">#1e1e1e</span>);
+
+  <span class="c">/* Kombinasi gambar + gradient */</span>
+  <span class="p">background</span>: <span class="fn">url</span>(<span class="v">'gambar.png'</span>), <span class="fn">linear-gradient</span>(<span class="n">45deg</span>, <span class="v">#000</span>, <span class="v">#333</span>);
+
+  <span class="c">/* Parallax */</span>
+  <span class="p">background-attachment</span>: <span class="v">fixed</span>;
+}</pre>
+      </div>
+    </section>
+
+    <!-- SHADOW -->
+    <section class="prop-section" id="shadow">
+      <div class="prop-header">
+        <span class="prop-tag">box-shadow / text-shadow</span>
+        <span class="prop-name">Bayangan</span>
+        <span class="prop-category cat-color">Visual</span>
+      </div>
+      <p class="prop-desc">Bayangan pada elemen atau teks. Format: <code>offset-x offset-y blur spread color</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.kartu</span> {
+  <span class="c">/*           x    y   blur spread  color */</span>
+  <span class="p">box-shadow</span>: <span class="n">0</span> <span class="n">4px</span> <span class="n">6px</span> <span class="n">-1px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.1</span>);
+
+  <span class="c">/* Glow */</span>
+  <span class="p">box-shadow</span>: <span class="n">0</span> <span class="n">0</span> <span class="n">20px</span> <span class="n">5px</span> <span class="fn">rgba</span>(<span class="n">249</span>,<span class="n">115</span>,<span class="n">22</span>,<span class="n">0.4</span>);
+
+  <span class="c">/* Multiple shadows */</span>
+  <span class="p">box-shadow</span>:
+    <span class="n">0</span> <span class="n">2px</span> <span class="n">4px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.1</span>),
+    <span class="n">0</span> <span class="n">8px</span> <span class="n">16px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.08</span>);
+
+  <span class="c">/* Inner shadow */</span>
+  <span class="p">box-shadow</span>: <span class="v">inset</span> <span class="n">0</span> <span class="n">2px</span> <span class="n">4px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.2</span>);
+}
+
+<span class="s">.judul</span> {
+  <span class="p">text-shadow</span>: <span class="n">2px</span> <span class="n">2px</span> <span class="n">4px</span> <span class="fn">rgba</span>(<span class="n">0</span>,<span class="n">0</span>,<span class="n">0</span>,<span class="n">0.3</span>);
+  <span class="p">text-shadow</span>: <span class="n">0</span> <span class="n">0</span> <span class="n">10px</span> <span class="v">#f97316</span>;  <span class="c">/* neon glow */</span>
+}</pre>
+      </div>
+    </section>
+
+    <!-- TRANSFORM -->
+    <section class="prop-section" id="transform">
+      <div class="prop-header">
+        <span class="prop-tag">transform</span>
+        <span class="prop-name">Transformasi Elemen</span>
+        <span class="prop-category cat-anim">Animasi</span>
+      </div>
+      <p class="prop-desc">Mengubah posisi, ukuran, rotasi tanpa mempengaruhi layout. Diproses GPU — sangat performa.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.el</span> {
+  <span class="c">/* Geser */</span>
+  <span class="p">transform</span>: <span class="fn">translateX</span>(<span class="n">50px</span>);
+  <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">-20px</span>);
+  <span class="p">transform</span>: <span class="fn">translate</span>(<span class="n">50px</span>, <span class="n">-20px</span>);
+  <span class="p">transform</span>: <span class="fn">translate</span>(<span class="n">-50%</span>, <span class="n">-50%</span>); <span class="c">/* centering trick */</span>
+
+  <span class="c">/* Skala */</span>
+  <span class="p">transform</span>: <span class="fn">scale</span>(<span class="n">1.1</span>);     <span class="c">/* 110% */</span>
+  <span class="p">transform</span>: <span class="fn">scaleX</span>(<span class="n">-1</span>);    <span class="c">/* flip horizontal */</span>
+
+  <span class="c">/* Rotasi */</span>
+  <span class="p">transform</span>: <span class="fn">rotate</span>(<span class="n">45deg</span>);
+  <span class="p">transform</span>: <span class="fn">rotate</span>(<span class="n">-90deg</span>);
+
+  <span class="c">/* Miring */</span>
+  <span class="p">transform</span>: <span class="fn">skew</span>(<span class="n">10deg</span>, <span class="n">5deg</span>);
+
+  <span class="c">/* Kombinasi */</span>
+  <span class="p">transform</span>: <span class="fn">translateX</span>(<span class="n">20px</span>) <span class="fn">scale</span>(<span class="n">1.1</span>) <span class="fn">rotate</span>(<span class="n">5deg</span>);
+
+  <span class="c">/* Titik pusat transformasi */</span>
+  <span class="p">transform-origin</span>: <span class="v">center</span>;
+  <span class="p">transform-origin</span>: <span class="v">top left</span>;
+}</pre>
+      </div>
+    </section>
+
+    <!-- TRANSITION -->
+    <section class="prop-section" id="transition">
+      <div class="prop-header">
+        <span class="prop-tag">transition</span>
+        <span class="prop-name">Animasi Perubahan</span>
+        <span class="prop-category cat-anim">Animasi</span>
+      </div>
+      <p class="prop-desc">Membuat perubahan CSS berlangsung halus. Format: <code>property duration timing delay</code>.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="s">.tombol</span> {
+  <span class="p">background</span>: <span class="v">#f97316</span>;
+  <span class="p">transition</span>: <span class="v">background</span> <span class="n">0.3s</span> <span class="v">ease</span>;
+
+  <span class="c">/* Semua properti */</span>
+  <span class="p">transition</span>: <span class="v">all</span> <span class="n">0.2s</span> <span class="v">ease</span>;
+
+  <span class="c">/* Beberapa properti */</span>
+  <span class="p">transition</span>:
+    <span class="v">background</span> <span class="n">0.3s</span> <span class="v">ease</span>,
+    <span class="v">transform</span>  <span class="n">0.2s</span> <span class="v">ease</span>,
+    <span class="v">opacity</span>   <span class="n">0.2s</span> <span class="v">ease</span>;
+}
+
+<span class="s">.tombol:hover</span> {
+  <span class="p">background</span>: <span class="v">#ea6c0a</span>;
+  <span class="p">transform</span>:  <span class="fn">scale</span>(<span class="n">1.05</span>);
+}
+
+<span class="c">/* Timing functions: */</span>
+<span class="c">/* ease        — lambat-cepat-lambat (default) */</span>
+<span class="c">/* linear      — kecepatan konstan */</span>
+<span class="c">/* ease-in     — lambat di awal */</span>
+<span class="c">/* ease-out    — lambat di akhir */</span>
+<span class="c">/* ease-in-out — lambat di kedua ujung */</span>
+<span class="c">/* cubic-bezier(x1,y1,x2,y2) — kustom */</span></pre>
+      </div>
+    </section>
+
+    <!-- ANIMATION -->
+    <section class="prop-section" id="animation">
+      <div class="prop-header">
+        <span class="prop-tag">@keyframes</span>
+        <span class="prop-name">CSS Animation</span>
+        <span class="prop-category cat-anim">Animasi</span>
+      </div>
+      <p class="prop-desc">Animasi kompleks dengan keyframe. Bisa loop dan tidak butuh interaksi user. Lebih powerful dari transition.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Definisi animasi */</span>
+<span class="k">@keyframes</span> <span class="fn">fadeIn</span> {
+  <span class="v">from</span> { <span class="p">opacity</span>: <span class="n">0</span>; <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">20px</span>); }
+  <span class="v">to</span>   { <span class="p">opacity</span>: <span class="n">1</span>; <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">0</span>); }
+}
+
+<span class="k">@keyframes</span> <span class="fn">bounce</span> {
+  <span class="n">0%</span>, <span class="n">100%</span> { <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">0</span>); }
+  <span class="n">50%</span>      { <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">-20px</span>); }
+}
+
+<span class="k">@keyframes</span> <span class="fn">spin</span> {
+  <span class="v">to</span> { <span class="p">transform</span>: <span class="fn">rotate</span>(<span class="n">360deg</span>); }
+}
+
+<span class="c">/* Penggunaan */</span>
+<span class="s">.muncul</span> {
+  <span class="c">/*         name     dur  timing  iteration  delay  fill */</span>
+  <span class="p">animation</span>: <span class="fn">fadeIn</span> <span class="n">0.5s</span>  <span class="v">ease</span>                       <span class="v">both</span>;
+}
+
+<span class="s">.spinner</span> { <span class="p">animation</span>: <span class="fn">spin</span>   <span class="n">1s</span>   <span class="v">linear</span>  <span class="v">infinite</span>; }
+<span class="s">.hero</span>    { <span class="p">animation</span>: <span class="fn">fadeIn</span> <span class="n">0.6s</span> <span class="v">ease</span>    <span class="n">1</span>        <span class="n">0.2s</span>  <span class="v">both</span>; }
+
+<span class="c">/* animation-fill-mode: */</span>
+<span class="c">/* none      — kembali ke state awal setelah selesai */</span>
+<span class="c">/* forwards  — tetap di state akhir */</span>
+<span class="c">/* backwards — terapkan from sebelum animasi mulai */</span>
+<span class="c">/* both      — gabungan forwards + backwards */</span></pre>
+      </div>
+    </section>
+
+    <hr/>
+
+    <!-- SELECTOR -->
+    <section class="prop-section" id="selector">
+      <div class="prop-header">
+        <span class="prop-tag">Selector</span>
+        <span class="prop-name">Pemilih Elemen CSS</span>
+        <span class="prop-category cat-sel">Selector</span>
+      </div>
+      <p class="prop-desc">Selector menentukan elemen mana yang akan diberi style.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Jenis Selector</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Universal */</span>
+<span class="s">*</span>                  { <span class="p">box-sizing</span>: <span class="v">border-box</span>; }
+
+<span class="c">/* Tag */</span>
+<span class="s">p</span>                  { <span class="p">color</span>: <span class="v">gray</span>; }
+
+<span class="c">/* Class (titik) */</span>
+<span class="s">.kartu</span>             { <span class="p">border-radius</span>: <span class="n">8px</span>; }
+
+<span class="c">/* ID (pagar) */</span>
+<span class="s">#header</span>            { <span class="p">background</span>: <span class="v">#000</span>; }
+
+<span class="c">/* Kombinasi */</span>
+<span class="s">div.kartu</span>          { }    <span class="c">/* div yang punya class kartu */</span>
+<span class="s">.kartu.aktif</span>       { }    <span class="c">/* punya dua class sekaligus */</span>
+
+<span class="c">/* Descendant (spasi) */</span>
+<span class="s">.nav a</span>             { }    <span class="c">/* semua a di dalam .nav */</span>
+
+<span class="c">/* Child langsung (&gt;) */</span>
+<span class="s">.nav &gt; a</span>           { }    <span class="c">/* a yang langsung anak .nav */</span>
+
+<span class="c">/* Adjacent sibling (+) */</span>
+<span class="s">h1 + p</span>             { }    <span class="c">/* p tepat setelah h1 */</span>
+
+<span class="c">/* General sibling (~) */</span>
+<span class="s">h1 ~ p</span>             { }    <span class="c">/* semua p setelah h1 */</span>
+
+<span class="c">/* Atribut */</span>
+<span class="s">input[type="text"]</span> { }
+<span class="s">a[href^="https"]</span>   { }    <span class="c">/* href mulai dengan https */</span>
+<span class="s">a[href$=".pdf"]</span>    { }    <span class="c">/* href berakhir .pdf */</span>
+<span class="s">[class*="btn"]</span>     { }    <span class="c">/* class mengandung "btn" */</span>
+
+<span class="c">/* Group (koma) */</span>
+<span class="s">h1, h2, h3</span>         { <span class="p">font-weight</span>: <span class="v">bold</span>; }</pre>
+      </div>
+    </section>
+
+    <!-- PSEUDO -->
+    <section class="prop-section" id="pseudo">
+      <div class="prop-header">
+        <span class="prop-tag">::pseudo</span>
+        <span class="prop-name">Pseudo-class &amp; Pseudo-element</span>
+        <span class="prop-category cat-var">Pseudo</span>
+      </div>
+      <p class="prop-desc"><strong>Pseudo-class</strong> (<code>:</code>) memilih elemen berdasarkan kondisi. <strong>Pseudo-element</strong> (<code>::</code>) menargetkan bagian tertentu dari elemen.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Pseudo-class</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* State */</span>
+<span class="s">a:hover</span>         { <span class="p">color</span>: <span class="v">blue</span>; }
+<span class="s">a:active</span>        { <span class="p">color</span>: <span class="v">red</span>; }
+<span class="s">input:focus</span>     { <span class="p">outline</span>: <span class="n">2px</span> <span class="v">solid</span> <span class="v">blue</span>; }
+<span class="s">input:disabled</span>  { <span class="p">opacity</span>: <span class="n">0.5</span>; }
+<span class="s">input:checked</span>   { }
+<span class="s">input:valid</span>     { <span class="p">border-color</span>: <span class="v">green</span>; }
+<span class="s">input:invalid</span>   { <span class="p">border-color</span>: <span class="v">red</span>; }
+
+<span class="c">/* Posisi */</span>
+<span class="s">li:first-child</span>     { <span class="p">font-weight</span>: <span class="v">bold</span>; }
+<span class="s">li:last-child</span>      { <span class="p">border</span>: <span class="v">none</span>; }
+<span class="s">li:nth-child(2)</span>    { }    <span class="c">/* anak ke-2 */</span>
+<span class="s">li:nth-child(odd)</span>  { }    <span class="c">/* ganjil */</span>
+<span class="s">li:nth-child(even)</span> { }    <span class="c">/* genap */</span>
+<span class="s">li:nth-child(3n)</span>   { }    <span class="c">/* setiap kelipatan 3 */</span>
+<span class="s">p:not(.aktif)</span>      { }    <span class="c">/* tidak punya class aktif */</span></pre>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Pseudo-element</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Sisipkan konten */</span>
+<span class="s">.label::before</span> {
+  <span class="p">content</span>: <span class="v">'★ '</span>;    <span class="c">/* wajib ada, bisa kosong: "" */</span>
+  <span class="p">color</span>: <span class="v">gold</span>;
+}
+<span class="s">.harga::after</span> {
+  <span class="p">content</span>: <span class="v">' /bulan'</span>;
+  <span class="p">font-size</span>: <span class="n">0.8em</span>;
+}
+
+<span class="c">/* Warna seleksi teks */</span>
+<span class="s">::selection</span> {
+  <span class="p">background</span>: <span class="v">#f97316</span>;
+  <span class="p">color</span>: <span class="v">white</span>;
+}
+
+<span class="c">/* Placeholder */</span>
+<span class="s">input::placeholder</span> {
+  <span class="p">color</span>: <span class="v">#999</span>;
+  <span class="p">font-style</span>: <span class="v">italic</span>;
+}
+
+<span class="c">/* Scrollbar kustom */</span>
+<span class="s">::-webkit-scrollbar</span>       { <span class="p">width</span>: <span class="n">6px</span>; }
+<span class="s">::-webkit-scrollbar-track</span> { <span class="p">background</span>: <span class="v">#f1f1f1</span>; }
+<span class="s">::-webkit-scrollbar-thumb</span> { <span class="p">background</span>: <span class="v">#888</span>; <span class="p">border-radius</span>: <span class="n">3px</span>; }</pre>
+      </div>
+    </section>
+
+    <!-- VARIABLE -->
+    <section class="prop-section" id="variable">
+      <div class="prop-header">
+        <span class="prop-tag">var() / --custom</span>
+        <span class="prop-name">CSS Custom Properties</span>
+        <span class="prop-category cat-var">Variables</span>
+      </div>
+      <p class="prop-desc">Menyimpan nilai yang bisa dipakai ulang. Sangat berguna untuk tema warna dan konsistensi desain.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Deklarasi global di :root */</span>
+<span class="s">:root</span> {
+  <span class="p">--warna-utama</span>: <span class="v">#f97316</span>;
+  <span class="p">--warna-bg</span>:    <span class="v">#0f1117</span>;
+  <span class="p">--warna-teks</span>:  <span class="v">#e2e8f0</span>;
+  <span class="p">--radius</span>:      <span class="n">10px</span>;
+  <span class="p">--spasi</span>:       <span class="n">16px</span>;
+}
+
+<span class="c">/* Penggunaan */</span>
+<span class="s">.tombol</span> {
+  <span class="p">background</span>:    <span class="fn">var</span>(<span class="p">--warna-utama</span>);
+  <span class="p">border-radius</span>: <span class="fn">var</span>(<span class="p">--radius</span>);
+  <span class="p">padding</span>:       <span class="fn">var</span>(<span class="p">--spasi</span>);
+}
+
+<span class="c">/* Fallback jika variabel tidak ada */</span>
+<span class="s">.el</span> { <span class="p">color</span>: <span class="fn">var</span>(<span class="p">--warna-teks</span>, <span class="v">#000</span>); }
+
+<span class="c">/* Dark mode */</span>
+<span class="k">@media</span> (<span class="p">prefers-color-scheme</span>: <span class="v">dark</span>) {
+  <span class="s">:root</span> {
+    <span class="p">--warna-bg</span>:   <span class="v">#0f1117</span>;
+    <span class="p">--warna-teks</span>: <span class="v">#e2e8f0</span>;
+  }
+}
+
+<span class="c">/* Ubah via JavaScript */</span>
+<span class="c">// document.documentElement.style</span>
+<span class="c">//   .setProperty('--warna-utama', '#00f');</span></pre>
+      </div>
+      <div class="tip good">
+        <span class="tip-icon">✅</span>
+        <div class="tip-text"><strong>Best Practice:</strong> Selalu definisikan warna, ukuran, dan spacing di <code>:root</code> sebagai CSS variables — membuat kode mudah diubah dan konsisten di seluruh proyek.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function copyCode(btn) {
+    const pre = btn.closest('.code-block').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+      btn.textContent = 'Tersalin!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Salin'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  const sections = document.querySelectorAll('.prop-section');
+  const links    = document.querySelectorAll('.sidebar a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
