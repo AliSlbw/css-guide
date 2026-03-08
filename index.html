@@ -330,6 +330,24 @@
     <a href="#value-color"><span class="prop-badge">col</span> Color</a>
     <a href="#value-functions"><span class="prop-badge">fn()</span> Functions</a>
     <a href="#value-global"><span class="prop-badge">inh</span> Global Values</a>
+    <div class="sidebar-section">Box Model Lanjutan</div>
+    <a href="#border-radius"><span class="prop-badge">radius</span> Border Radius</a>
+    <a href="#outline"><span class="prop-badge">outline</span> Outline</a>
+    <a href="#opacity"><span class="prop-badge">opacity</span> Opacity &amp; Visibility</a>
+    <a href="#zindex"><span class="prop-badge">z-index</span> Z-Index &amp; Stacking</a>
+    <div class="sidebar-section">Visual Lanjutan</div>
+    <a href="#filter"><span class="prop-badge">filter</span> Filter</a>
+    <a href="#clip-path"><span class="prop-badge">clip</span> Clip-path</a>
+    <a href="#object-fit"><span class="prop-badge">obj</span> Object-fit</a>
+    <a href="#cursor"><span class="prop-badge">cursor</span> Cursor &amp; Pointer</a>
+    <div class="sidebar-section">Layout Lanjutan</div>
+    <a href="#gap"><span class="prop-badge">gap</span> Gap</a>
+    <a href="#scroll"><span class="prop-badge">scroll</span> Scroll &amp; Snap</a>
+    <a href="#media"><span class="prop-badge">@media</span> Media Queries</a>
+    <a href="#container"><span class="prop-badge">@layer</span> Layer &amp; Container</a>
+    <div class="sidebar-section">Pseudo Lengkap</div>
+    <a href="#pseudo-class"><span class="prop-badge">:</span> Pseudo-class</a>
+    <a href="#pseudo-fn"><span class="prop-badge">:is()</span> :is() :where() :has()</a>
   </nav>
 
   <main class="main">
@@ -1388,7 +1406,663 @@
         <span class="tip-icon">✅</span>
         <div class="tip-text"><strong>Tips reset komponen:</strong> Gunakan <code>all: unset</code> lalu tambahkan ulang hanya style yang dibutuhkan. Lebih bersih dari mereset satu per satu.</div>
       </div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- BORDER RADIUS -->
+    <section class="prop-section" id="border-radius">
+      <div class="prop-header">
+        <span class="prop-tag">border-radius</span>
+        <span class="prop-name">Border Radius</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Membulatkan sudut elemen. Bisa diset seragam, per sudut, atau bahkan bentuk elips.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">border-radius</td><td class="pn">8px / 50% / 1rem</td><td>Shorthand — semua sudut sekaligus</td></tr>
+        <tr><td class="pn">border-top-left-radius</td><td class="pn">8px</td><td>Sudut kiri atas</td></tr>
+        <tr><td class="pn">border-top-right-radius</td><td class="pn">8px</td><td>Sudut kanan atas</td></tr>
+        <tr><td class="pn">border-bottom-right-radius</td><td class="pn">8px</td><td>Sudut kanan bawah</td></tr>
+        <tr><td class="pn">border-bottom-left-radius</td><td class="pn">8px</td><td>Sudut kiri bawah</td></tr>
+      </table>
+      <div class="tip info"><span class="tip-icon">💡</span><div class="tip-text"><strong>Shorthand order:</strong> <code>border-radius: TL TR BR BL</code> — searah jarum jam dari kiri atas. Dua nilai: <code>TL+BR / TR+BL</code>.</div></div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Semua sudut sama */</span>
+<span class="s">.card</span>   { <span class="p">border-radius</span>: <span class="n">12px</span>; }
+<span class="s">.circle</span> { <span class="p">border-radius</span>: <span class="n">50%</span>; }   <span class="c">/* lingkaran */</span>
+<span class="s">.pill</span>   { <span class="p">border-radius</span>: <span class="n">999px</span>; } <span class="c">/* pill/capsule */</span>
+
+<span class="c">/* Per sudut */</span>
+<span class="s">.bubble</span> { <span class="p">border-radius</span>: <span class="n">16px</span> <span class="n">16px</span> <span class="n">16px</span> <span class="n">0</span>; } <span class="c">/* chat bubble */</span>
+
+<span class="c">/* Elips — rx / ry */</span>
+<span class="s">.egg</span> { <span class="p">border-radius</span>: <span class="n">50%</span> <span class="n">50%</span> <span class="n">50%</span> <span class="n">50%</span> / <span class="n">60%</span> <span class="n">60%</span> <span class="n">40%</span> <span class="n">40%</span>; }</pre>
+      </div>
     </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- OUTLINE -->
+    <section class="prop-section" id="outline">
+      <div class="prop-header">
+        <span class="prop-tag">outline</span>
+        <span class="prop-name">Outline</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Outline mirip border tapi <strong>tidak mempengaruhi layout</strong> — tidak menambah ukuran elemen dan bisa berada di luar border. Sering dipakai untuk focus indicator aksesibilitas.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">outline</td><td class="pn">2px solid blue</td><td>Shorthand: width style color</td></tr>
+        <tr><td class="pn">outline-width</td><td class="pn">thin / medium / thick / px</td><td>Ketebalan outline</td></tr>
+        <tr><td class="pn">outline-style</td><td class="pn">solid / dashed / dotted / none</td><td>Gaya garis outline</td></tr>
+        <tr><td class="pn">outline-color</td><td class="pn">&lt;color&gt; / invert</td><td>Warna outline. <code>invert</code> = warna kebalikan background</td></tr>
+        <tr><td class="pn">outline-offset</td><td class="pn">4px / -2px</td><td>Jarak outline dari tepi elemen. Nilai negatif = masuk ke dalam</td></tr>
+      </table>
+      <div class="tip warn"><span class="tip-icon">⚠️</span><div class="tip-text"><strong>Jangan hapus outline begitu saja!</strong> <code>outline: none</code> merusak aksesibilitas keyboard. Kalau mau custom, ganti dengan style yang tetap terlihat jelas saat fokus.</div></div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Custom focus indicator yang aksesibel */</span>
+<span class="s">:focus-visible</span> {
+  <span class="p">outline</span>: <span class="n">2px</span> solid <span class="v">#4f8ef7</span>;
+  <span class="p">outline-offset</span>: <span class="n">3px</span>;
+}
+
+<span class="c">/* Outline di dalam elemen */</span>
+<span class="s">.inset-outline</span> {
+  <span class="p">outline</span>: <span class="n">2px</span> solid <span class="v">white</span>;
+  <span class="p">outline-offset</span>: <span class="n">-4px</span>;
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- OPACITY & VISIBILITY -->
+    <section class="prop-section" id="opacity">
+      <div class="prop-header">
+        <span class="prop-tag">opacity / visibility</span>
+        <span class="prop-name">Opacity &amp; Visibility</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Mengatur transparansi dan keterlihatan elemen. Keduanya berbeda dalam cara kerja dan dampak terhadap layout.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">opacity</td><td class="pn">0 – 1</td><td>Transparansi seluruh elemen termasuk anak-anaknya. <code>0</code>=bening, <code>1</code>=opak. Elemen tetap ada di layout.</td></tr>
+        <tr><td class="pn">visibility</td><td class="pn">visible / hidden / collapse</td><td><code>hidden</code> = tidak terlihat tapi tetap menempati ruang. <code>collapse</code> = khusus tabel.</td></tr>
+      </table>
+      <table class="ref-table" style="margin-top:12px;">
+        <tr><th>Cara</th><th>Terlihat?</th><th>Ruang layout?</th><th>Event klik?</th><th>Transisi?</th></tr>
+        <tr><td class="pn">opacity: 0</td><td>❌</td><td>✅ Ada</td><td>✅ Masih bisa diklik</td><td>✅ Bisa</td></tr>
+        <tr><td class="pn">visibility: hidden</td><td>❌</td><td>✅ Ada</td><td>❌ Tidak bisa diklik</td><td>⚠️ Terbatas</td></tr>
+        <tr><td class="pn">display: none</td><td>❌</td><td>❌ Hilang</td><td>❌ Tidak bisa diklik</td><td>❌ Tidak bisa</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Fade in/out dengan transisi */</span>
+<span class="s">.tooltip</span> {
+  <span class="p">opacity</span>: <span class="n">0</span>;
+  <span class="p">visibility</span>: <span class="v">hidden</span>;
+  <span class="p">transition</span>: <span class="v">opacity</span> <span class="n">0.2s</span>, <span class="v">visibility</span> <span class="n">0.2s</span>;
+}
+<span class="s">.tooltip.show</span> {
+  <span class="p">opacity</span>: <span class="n">1</span>;
+  <span class="p">visibility</span>: <span class="v">visible</span>;
+}
+
+<span class="c">/* Opacity pada elemen — semua anak ikut transparan */</span>
+<span class="s">.disabled</span> { <span class="p">opacity</span>: <span class="n">0.4</span>; <span class="p">pointer-events</span>: <span class="v">none</span>; }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- Z-INDEX & STACKING -->
+    <section class="prop-section" id="zindex">
+      <div class="prop-header">
+        <span class="prop-tag">z-index</span>
+        <span class="prop-name">Z-Index &amp; Stacking Context</span>
+        <span class="prop-category cat-box">Box Model</span>
+      </div>
+      <p class="prop-desc">Mengatur urutan tumpukan elemen di sumbu Z (depan-belakang). Hanya bekerja pada elemen dengan <code>position</code> selain <code>static</code>, atau elemen flex/grid.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">z-index</td><td class="pn">auto / integer</td><td>Nilai lebih besar = lebih di depan. Negatif = di belakang parent. <code>auto</code> = ikut urutan DOM.</td></tr>
+      </table>
+      <div class="tip info"><span class="tip-icon">💡</span><div class="tip-text"><strong>Stacking Context baru terbentuk saat:</strong> elemen punya <code>position + z-index</code> bukan auto, <code>opacity &lt; 1</code>, <code>transform</code>, <code>filter</code>, <code>will-change</code>, <code>isolation: isolate</code>, dll. Elemen di dalam stacking context tidak bisa "keluar" melampaui parent-nya.</div></div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Konvensi z-index yang terorganisir */</span>
+<span class="s">:root</span> {
+  <span class="p">--z-base</span>:    <span class="n">0</span>;
+  <span class="p">--z-dropdown</span>: <span class="n">100</span>;
+  <span class="p">--z-sticky</span>:  <span class="n">200</span>;
+  <span class="p">--z-modal</span>:   <span class="n">300</span>;
+  <span class="p">--z-toast</span>:   <span class="n">400</span>;
+  <span class="p">--z-tooltip</span>: <span class="n">500</span>;
+}
+
+<span class="s">.modal</span>   { <span class="p">position</span>: <span class="v">fixed</span>; <span class="p">z-index</span>: <span class="fn">var</span>(<span class="p">--z-modal</span>); }
+<span class="s">.overlay</span> { <span class="p">position</span>: <span class="v">fixed</span>; <span class="p">z-index</span>: <span class="fn">var</span>(<span class="p">--z-modal</span>); }
+
+<span class="c">/* isolate — cegah z-index bocor keluar komponen */</span>
+<span class="s">.card</span> { <span class="p">isolation</span>: <span class="v">isolate</span>; }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- FILTER -->
+    <section class="prop-section" id="filter">
+      <div class="prop-header">
+        <span class="prop-tag">filter / backdrop-filter</span>
+        <span class="prop-name">Filter &amp; Backdrop Filter</span>
+        <span class="prop-category cat-anim">Visual</span>
+      </div>
+      <p class="prop-desc"><code>filter</code> mengaplikasikan efek visual pada elemen dan kontennya. <code>backdrop-filter</code> mengaplikasikan efek pada area <em>di belakang</em> elemen (efek kaca/frosted glass).</p>
+      <table class="ref-table">
+        <tr><th>Fungsi Filter</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">blur()</td><td class="pn">blur(8px)</td><td>Efek buram. Nilai lebih besar = lebih buram.</td></tr>
+        <tr><td class="pn">brightness()</td><td class="pn">brightness(1.5)</td><td>Kecerahan. 1=normal, &gt;1=lebih terang, &lt;1=gelap.</td></tr>
+        <tr><td class="pn">contrast()</td><td class="pn">contrast(2)</td><td>Kontras. 1=normal, 0=abu-abu penuh.</td></tr>
+        <tr><td class="pn">saturate()</td><td class="pn">saturate(0.5)</td><td>Saturasi warna. 0=grayscale, 1=normal, &gt;1=vivid.</td></tr>
+        <tr><td class="pn">grayscale()</td><td class="pn">grayscale(100%)</td><td>Hitam putih. 0%=normal, 100%=full grayscale.</td></tr>
+        <tr><td class="pn">sepia()</td><td class="pn">sepia(80%)</td><td>Efek foto lawas kecoklatan.</td></tr>
+        <tr><td class="pn">invert()</td><td class="pn">invert(100%)</td><td>Balik semua warna. Berguna untuk dark mode image.</td></tr>
+        <tr><td class="pn">hue-rotate()</td><td class="pn">hue-rotate(90deg)</td><td>Putar hue warna. 360deg = kembali ke awal.</td></tr>
+        <tr><td class="pn">opacity()</td><td class="pn">opacity(0.5)</td><td>Transparansi via filter. Bisa dikombinasikan dengan filter lain.</td></tr>
+        <tr><td class="pn">drop-shadow()</td><td class="pn">drop-shadow(2px 4px 8px black)</td><td>Shadow mengikuti bentuk konten (bukan kotak). Berbeda dari box-shadow.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Multi filter — dipisah spasi */</span>
+<span class="s">.foto</span> { <span class="p">filter</span>: <span class="fn">brightness</span>(<span class="n">1.1</span>) <span class="fn">contrast</span>(<span class="n">1.2</span>) <span class="fn">saturate</span>(<span class="n">1.3</span>); }
+
+<span class="c">/* Grayscale saat tidak hover */</span>
+<span class="s">.card img</span>       { <span class="p">filter</span>: <span class="fn">grayscale</span>(<span class="n">100%</span>); <span class="p">transition</span>: <span class="v">filter</span> <span class="n">0.3s</span>; }
+<span class="s">.card:hover img</span> { <span class="p">filter</span>: <span class="fn">grayscale</span>(<span class="n">0%</span>); }
+
+<span class="c">/* Frosted glass effect */</span>
+<span class="s">.glass</span> {
+  <span class="p">background</span>: <span class="fn">rgba</span>(<span class="n">255 255 255 / 0.1</span>);
+  <span class="p">backdrop-filter</span>: <span class="fn">blur</span>(<span class="n">16px</span>) <span class="fn">saturate</span>(<span class="n">180%</span>);
+  <span class="p">-webkit-backdrop-filter</span>: <span class="fn">blur</span>(<span class="n">16px</span>) <span class="fn">saturate</span>(<span class="n">180%</span>);
+  <span class="p">border</span>: <span class="n">1px</span> solid <span class="fn">rgba</span>(<span class="n">255 255 255 / 0.2</span>);
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- CLIP-PATH -->
+    <section class="prop-section" id="clip-path">
+      <div class="prop-header">
+        <span class="prop-tag">clip-path</span>
+        <span class="prop-name">Clip-path</span>
+        <span class="prop-category cat-anim">Visual</span>
+      </div>
+      <p class="prop-desc">Memotong elemen menjadi bentuk tertentu. Area di luar clip tidak terlihat dan tidak bisa diklik.</p>
+      <table class="ref-table">
+        <tr><th>Shape</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">circle()</td><td class="pn">circle(50%)</td><td>Lingkaran. Radius bisa px atau %. Pusat default = center.</td></tr>
+        <tr><td class="pn">ellipse()</td><td class="pn">ellipse(60% 40%)</td><td>Elips dengan dua radius.</td></tr>
+        <tr><td class="pn">inset()</td><td class="pn">inset(10px 20px round 8px)</td><td>Kotak dengan inset dari tepi. <code>round</code> untuk sudut membulat.</td></tr>
+        <tr><td class="pn">polygon()</td><td class="pn">polygon(50% 0%, 100% 100%, 0% 100%)</td><td>Bentuk bebas dari daftar titik x y.</td></tr>
+        <tr><td class="pn">path()</td><td class="pn">path('M 0 0 L 100 0 ...')</td><td>SVG path — bentuk paling fleksibel.</td></tr>
+        <tr><td class="pn">none</td><td class="pn">none</td><td>Tidak ada clipping (default).</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Avatar lingkaran */</span>
+<span class="s">.avatar</span> { <span class="p">clip-path</span>: <span class="fn">circle</span>(<span class="n">50%</span>); }
+
+<span class="c">/* Segitiga */</span>
+<span class="s">.arrow</span> { <span class="p">clip-path</span>: <span class="fn">polygon</span>(<span class="n">50% 0%</span>, <span class="n">100% 100%</span>, <span class="n">0% 100%</span>); }
+
+<span class="c">/* Section diagonal */</span>
+<span class="s">.hero</span> { <span class="p">clip-path</span>: <span class="fn">polygon</span>(<span class="n">0 0</span>, <span class="n">100% 0</span>, <span class="n">100% 85%</span>, <span class="n">0 100%</span>); }
+
+<span class="c">/* Animasi clip-path */</span>
+<span class="s">.reveal</span> {
+  <span class="p">clip-path</span>: <span class="fn">inset</span>(<span class="n">0 100% 0 0</span>);
+  <span class="p">transition</span>: <span class="v">clip-path</span> <span class="n">0.5s</span> <span class="v">ease</span>;
+}
+<span class="s">.reveal.show</span> { <span class="p">clip-path</span>: <span class="fn">inset</span>(<span class="n">0 0% 0 0</span>); }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- OBJECT-FIT -->
+    <section class="prop-section" id="object-fit">
+      <div class="prop-header">
+        <span class="prop-tag">object-fit / object-position</span>
+        <span class="prop-name">Object-fit &amp; Object-position</span>
+        <span class="prop-category cat-anim">Visual</span>
+      </div>
+      <p class="prop-desc">Mengontrol bagaimana konten <code>&lt;img&gt;</code>, <code>&lt;video&gt;</code>, atau elemen replaced lain mengisi dimensi containernya.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">object-fit: fill</td><td class="pn">—</td><td>Konten direntangkan mengisi container. Bisa distorsi (default).</td></tr>
+        <tr><td class="pn">object-fit: contain</td><td class="pn">—</td><td>Konten diperkecil/perbesar agar terlihat semua. Ada letterbox.</td></tr>
+        <tr><td class="pn">object-fit: cover</td><td class="pn">—</td><td>Konten mengisi penuh container tanpa distorsi. Sebagian mungkin terpotong.</td></tr>
+        <tr><td class="pn">object-fit: none</td><td class="pn">—</td><td>Konten ukuran asli, tidak di-scale.</td></tr>
+        <tr><td class="pn">object-fit: scale-down</td><td class="pn">—</td><td>Pilih yang lebih kecil antara <code>none</code> dan <code>contain</code>.</td></tr>
+        <tr><td class="pn">object-position</td><td class="pn">center / top / 50% 20%</td><td>Posisi fokus konten dalam container. Default: center.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Thumbnail gambar seragam tanpa distorsi */</span>
+<span class="s">.thumbnail</span> {
+  <span class="p">width</span>: <span class="n">200px</span>;
+  <span class="p">height</span>: <span class="n">200px</span>;
+  <span class="p">object-fit</span>: <span class="v">cover</span>;
+  <span class="p">object-position</span>: <span class="v">center top</span>; <span class="c">/* fokus ke bagian atas */</span>
+}
+
+<span class="c">/* Video background */</span>
+<span class="s">.bg-video</span> {
+  <span class="p">width</span>: <span class="n">100%</span>; <span class="p">height</span>: <span class="n">100%</span>;
+  <span class="p">object-fit</span>: <span class="v">cover</span>;
+  <span class="p">position</span>: <span class="v">absolute</span>;
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- CURSOR & POINTER-EVENTS -->
+    <section class="prop-section" id="cursor">
+      <div class="prop-header">
+        <span class="prop-tag">cursor / pointer-events</span>
+        <span class="prop-name">Cursor &amp; Pointer Events</span>
+        <span class="prop-category cat-anim">Visual</span>
+      </div>
+      <p class="prop-desc">Mengontrol tampilan kursor mouse dan respons elemen terhadap event pointer (klik, hover, dll).</p>
+      <table class="ref-table">
+        <tr><th>Nilai cursor</th><th>Kapan Pakai</th></tr>
+        <tr><td class="pn">default</td><td>Kursor panah normal</td></tr>
+        <tr><td class="pn">pointer</td><td>Tombol, link, elemen yang bisa diklik</td></tr>
+        <tr><td class="pn">text</td><td>Area teks yang bisa diseleksi</td></tr>
+        <tr><td class="pn">move</td><td>Elemen yang bisa dipindah/drag</td></tr>
+        <tr><td class="pn">grab / grabbing</td><td>Sebelum / saat menarik elemen</td></tr>
+        <tr><td class="pn">not-allowed</td><td>Aksi tidak diizinkan / tombol disabled</td></tr>
+        <tr><td class="pn">wait / progress</td><td>Loading. <code>wait</code>=blocking, <code>progress</code>=bisa berinteraksi</td></tr>
+        <tr><td class="pn">crosshair</td><td>Selection area, tools gambar</td></tr>
+        <tr><td class="pn">zoom-in / zoom-out</td><td>Konten yang bisa di-zoom</td></tr>
+        <tr><td class="pn">help</td><td>Ada informasi bantuan tersedia</td></tr>
+        <tr><td class="pn">none</td><td>Sembunyikan kursor (game, presentasi)</td></tr>
+        <tr><td class="pn">url("icon.png"), auto</td><td>Kursor custom dari gambar. Selalu sertakan fallback.</td></tr>
+      </table>
+      <table class="ref-table" style="margin-top:16px;">
+        <tr><th>pointer-events</th><th>Keterangan</th></tr>
+        <tr><td class="pn">auto</td><td>Perilaku normal (default)</td></tr>
+        <tr><td class="pn">none</td><td>Elemen tidak merespons klik/hover sama sekali. Event diteruskan ke elemen di bawahnya.</td></tr>
+        <tr><td class="pn">all</td><td>SVG — elemen merespons semua pointer event</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Tombol disabled */</span>
+<span class="s">button:disabled</span> {
+  <span class="p">cursor</span>: <span class="v">not-allowed</span>;
+  <span class="p">opacity</span>: <span class="n">0.5</span>;
+}
+
+<span class="c">/* Overlay tidak blocking klik ke bawahnya */</span>
+<span class="s">.decorative-overlay</span> { <span class="p">pointer-events</span>: <span class="v">none</span>; }
+
+<span class="c">/* Drag handle */</span>
+<span class="s">.drag-handle</span> { <span class="p">cursor</span>: <span class="v">grab</span>; }
+<span class="s">.drag-handle:active</span> { <span class="p">cursor</span>: <span class="v">grabbing</span>; }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- GAP -->
+    <section class="prop-section" id="gap">
+      <div class="prop-header">
+        <span class="prop-tag">gap / row-gap / column-gap</span>
+        <span class="prop-name">Gap</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Mengatur jarak antar item dalam Flexbox dan Grid. Lebih bersih dari margin karena tidak menambah jarak di tepi container.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">gap</td><td class="pn">16px / 1rem / 5%</td><td>Shorthand untuk row-gap dan column-gap sekaligus.</td></tr>
+        <tr><td class="pn">gap: row col</td><td class="pn">16px 24px</td><td>Nilai pertama = row-gap, kedua = column-gap.</td></tr>
+        <tr><td class="pn">row-gap</td><td class="pn">16px</td><td>Jarak antar baris (vertikal).</td></tr>
+        <tr><td class="pn">column-gap</td><td class="pn">24px</td><td>Jarak antar kolom (horizontal).</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Flexbox dengan gap */</span>
+<span class="s">.nav</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">gap</span>: <span class="n">8px</span>;
+}
+
+<span class="c">/* Grid dengan gap berbeda */</span>
+<span class="s">.grid</span> {
+  <span class="p">display</span>: <span class="v">grid</span>;
+  <span class="p">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="n">3</span>, <span class="n">1fr</span>);
+  <span class="p">gap</span>: <span class="n">24px</span> <span class="n">16px</span>; <span class="c">/* row 24px, column 16px */</span>
+}
+
+<span class="c">/* Lebih bersih dari margin */</span>
+<span class="c">/* ❌ Lama: */</span>
+<span class="s">.item</span> { <span class="p">margin-right</span>: <span class="n">16px</span>; }
+<span class="s">.item:last-child</span> { <span class="p">margin-right</span>: <span class="n">0</span>; }
+<span class="c">/* ✅ Baru: */</span>
+<span class="s">.container</span> { <span class="p">display</span>: <span class="v">flex</span>; <span class="p">gap</span>: <span class="n">16px</span>; }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- SCROLL -->
+    <section class="prop-section" id="scroll">
+      <div class="prop-header">
+        <span class="prop-tag">scroll-behavior / scroll-snap</span>
+        <span class="prop-name">Scroll &amp; Scroll Snap</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Mengontrol perilaku scroll — mulai dari smooth scroll hingga scroll snap yang membuat item "mengklik" ke posisi tertentu seperti carousel.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">scroll-behavior</td><td class="pn">auto / smooth</td><td><code>smooth</code> = scroll animasi halus saat navigasi anchor <code>#id</code>.</td></tr>
+        <tr><td class="pn">scroll-margin</td><td class="pn">px / rem</td><td>Jarak offset saat elemen di-scroll ke (berguna untuk fixed header).</td></tr>
+        <tr><td class="pn">scroll-padding</td><td class="pn">px / rem</td><td>Padding dalam scroll container. Berguna agar konten tidak tertutup sticky header.</td></tr>
+        <tr><td class="pn">scroll-snap-type</td><td class="pn">x / y / both + mandatory / proximity</td><td>Aktifkan snap pada container. <code>mandatory</code> = selalu snap, <code>proximity</code> = snap jika dekat.</td></tr>
+        <tr><td class="pn">scroll-snap-align</td><td class="pn">start / center / end</td><td>Posisi snap tiap item terhadap container.</td></tr>
+        <tr><td class="pn">scroll-snap-stop</td><td class="pn">normal / always</td><td><code>always</code> = paksa berhenti di setiap item, tidak bisa skip.</td></tr>
+        <tr><td class="pn">overscroll-behavior</td><td class="pn">auto / contain / none</td><td><code>contain</code> = cegah scroll chaining ke parent saat mencapai batas.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Scroll Snap Carousel</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Smooth scroll global */</span>
+<span class="s">html</span> { <span class="p">scroll-behavior</span>: <span class="v">smooth</span>; }
+
+<span class="c">/* Offset untuk fixed header */</span>
+<span class="s">section</span> { <span class="p">scroll-margin-top</span>: <span class="n">80px</span>; }
+
+<span class="c">/* Carousel horizontal */</span>
+<span class="s">.carousel</span> {
+  <span class="p">display</span>: <span class="v">flex</span>;
+  <span class="p">overflow-x</span>: <span class="v">auto</span>;
+  <span class="p">scroll-snap-type</span>: <span class="v">x mandatory</span>;
+  <span class="p">gap</span>: <span class="n">16px</span>;
+  <span class="p">overscroll-behavior-x</span>: <span class="v">contain</span>;
+}
+<span class="s">.carousel-item</span> {
+  <span class="p">flex-shrink</span>: <span class="n">0</span>;
+  <span class="p">width</span>: <span class="n">80%</span>;
+  <span class="p">scroll-snap-align</span>: <span class="v">center</span>;
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- MEDIA QUERIES -->
+    <section class="prop-section" id="media">
+      <div class="prop-header">
+        <span class="prop-tag">@media</span>
+        <span class="prop-name">Media Queries</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Mengaplikasikan CSS secara kondisional berdasarkan karakteristik perangkat — ukuran layar, orientasi, preferensi pengguna, dll.</p>
+      <table class="ref-table">
+        <tr><th>Feature</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">width / height</td><td class="pn">@media (max-width: 768px)</td><td>Lebar/tinggi viewport. Gunakan <code>min-width</code> untuk mobile-first.</td></tr>
+        <tr><td class="pn">min-width</td><td class="pn">@media (min-width: 640px)</td><td>Mobile-first: style dasar untuk mobile, tambah untuk layar lebih besar.</td></tr>
+        <tr><td class="pn">orientation</td><td class="pn">@media (orientation: landscape)</td><td>Portrait atau landscape.</td></tr>
+        <tr><td class="pn">prefers-color-scheme</td><td class="pn">@media (prefers-color-scheme: dark)</td><td>Mode gelap/terang sesuai preferensi sistem pengguna.</td></tr>
+        <tr><td class="pn">prefers-reduced-motion</td><td class="pn">@media (prefers-reduced-motion: reduce)</td><td>Pengguna minta kurangi/matikan animasi. Penting untuk aksesibilitas.</td></tr>
+        <tr><td class="pn">prefers-contrast</td><td class="pn">@media (prefers-contrast: more)</td><td>Pengguna minta kontras tinggi.</td></tr>
+        <tr><td class="pn">hover</td><td class="pn">@media (hover: hover)</td><td>Perangkat mendukung hover (bukan layar sentuh).</td></tr>
+        <tr><td class="pn">pointer</td><td class="pn">@media (pointer: coarse)</td><td><code>coarse</code>=layar sentuh, <code>fine</code>=mouse. Untuk menyesuaikan ukuran target tap.</td></tr>
+        <tr><td class="pn">display-mode</td><td class="pn">@media (display-mode: standalone)</td><td>Deteksi PWA yang dibuka dari homescreen.</td></tr>
+        <tr><td class="pn">print</td><td class="pn">@media print</td><td>Style khusus saat halaman dicetak.</td></tr>
+      </table>
+      <div class="tip info"><span class="tip-icon">💡</span><div class="tip-text"><strong>Breakpoint umum (mobile-first):</strong> <code>640px</code> (sm), <code>768px</code> (md), <code>1024px</code> (lg), <code>1280px</code> (xl), <code>1536px</code> (2xl). Ini konvensi Tailwind CSS.</div></div>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Mobile-first */</span>
+<span class="s">.grid</span> { <span class="p">grid-template-columns</span>: <span class="n">1fr</span>; }
+<span class="k">@media</span> (<span class="p">min-width</span>: <span class="n">768px</span>) {
+  <span class="s">.grid</span> { <span class="p">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="n">2</span>, <span class="n">1fr</span>); }
+}
+<span class="k">@media</span> (<span class="p">min-width</span>: <span class="n">1024px</span>) {
+  <span class="s">.grid</span> { <span class="p">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="n">3</span>, <span class="n">1fr</span>); }
+}
+
+<span class="c">/* Dark mode */</span>
+<span class="k">@media</span> (<span class="p">prefers-color-scheme</span>: <span class="v">dark</span>) {
+  <span class="s">:root</span> { <span class="p">--bg</span>: <span class="v">#0f1117</span>; <span class="p">--text</span>: <span class="v">#e2e8f0</span>; }
+}
+
+<span class="c">/* Respek preferensi reduced motion */</span>
+<span class="k">@media</span> (<span class="p">prefers-reduced-motion</span>: <span class="v">reduce</span>) {
+  <span class="s">*, *::before, *::after</span> { <span class="p">animation-duration</span>: <span class="n">0.01ms</span> <span class="v">!important</span>; }
+}
+
+<span class="c">/* Print */</span>
+<span class="k">@media</span> <span class="v">print</span> {
+  <span class="s">.sidebar, .nav, .ads</span> { <span class="p">display</span>: <span class="v">none</span>; }
+  <span class="s">body</span> { <span class="p">font-size</span>: <span class="n">12pt</span>; <span class="p">color</span>: <span class="v">black</span>; }
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- @LAYER & CONTAINER QUERIES -->
+    <section class="prop-section" id="container">
+      <div class="prop-header">
+        <span class="prop-tag">@layer / @container</span>
+        <span class="prop-name">Cascade Layer &amp; Container Queries</span>
+        <span class="prop-category cat-layout">Layout</span>
+      </div>
+      <p class="prop-desc">Fitur CSS modern untuk manajemen cascade yang lebih terstruktur dan komponen yang responsif terhadap ukuran container-nya sendiri — bukan viewport.</p>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--green);">@layer — Cascade Layers</h3>
+      <p class="pd" style="margin-bottom:0.75rem;">Mengorganisir CSS ke dalam layer dengan urutan prioritas yang jelas. Layer yang didefinisikan belakangan menang, tapi semuanya kalah dari style di luar layer.</p>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>@layer</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Deklarasi urutan layer — urutan ini yang menentukan prioritas */</span>
+<span class="k">@layer</span> base, components, utilities;
+
+<span class="k">@layer</span> base {
+  <span class="s">h1</span> { <span class="p">font-size</span>: <span class="n">2rem</span>; }
+}
+<span class="k">@layer</span> components {
+  <span class="s">.btn</span> { <span class="p">padding</span>: <span class="n">8px</span> <span class="n">16px</span>; }
+}
+<span class="k">@layer</span> utilities {
+  <span class="s">.mt-4</span> { <span class="p">margin-top</span>: <span class="n">1rem</span>; }
+}
+
+<span class="c">/* Style di luar layer selalu menang atas style dalam layer */</span>
+<span class="s">h1</span> { <span class="p">font-size</span>: <span class="n">3rem</span>; } <span class="c">/* ini menang atas @layer base */</span></pre>
+      </div>
+
+      <h3 style="margin:1.5rem 0 0.6rem;font-size:0.88rem;color:var(--green);">@container — Container Queries</h3>
+      <p class="pd" style="margin-bottom:0.75rem;">Komponen bisa responsif berdasarkan ukuran parent-nya sendiri, bukan viewport. Revolusi untuk desain komponen yang reusable.</p>
+      <table class="ref-table">
+        <tr><th>Property</th><th>Nilai</th><th>Keterangan</th></tr>
+        <tr><td class="pn">container-type</td><td class="pn">inline-size / size / normal</td><td>Jadikan elemen sebagai container. <code>inline-size</code> = query berdasarkan lebar.</td></tr>
+        <tr><td class="pn">container-name</td><td class="pn">nama-bebas</td><td>Nama container untuk di-query secara spesifik.</td></tr>
+        <tr><td class="pn">container</td><td class="pn">nama / type</td><td>Shorthand untuk container-name dan container-type.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>@container</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Definisikan container */</span>
+<span class="s">.card-wrapper</span> {
+  <span class="p">container-type</span>: <span class="v">inline-size</span>;
+  <span class="p">container-name</span>: <span class="v">card</span>;
+}
+
+<span class="c">/* Query berdasarkan ukuran container, bukan viewport */</span>
+<span class="k">@container</span> card (<span class="p">min-width</span>: <span class="n">400px</span>) {
+  <span class="s">.card</span> { <span class="p">flex-direction</span>: <span class="v">row</span>; }
+  <span class="s">.card-img</span> { <span class="p">width</span>: <span class="n">40%</span>; }
+}
+
+<span class="c">/* Container query units */</span>
+<span class="s">.card-title</span> { <span class="p">font-size</span>: <span class="n">3cqi</span>; } <span class="c">/* 3% lebar container */</span></pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- PSEUDO-CLASS LENGKAP -->
+    <section class="prop-section" id="pseudo-class">
+      <div class="prop-header">
+        <span class="prop-tag">:pseudo-class</span>
+        <span class="prop-name">Pseudo-class Lengkap</span>
+        <span class="prop-category cat-sel">Selector</span>
+      </div>
+      <p class="prop-desc">Pseudo-class memilih elemen berdasarkan <strong>kondisi atau state</strong> tertentu tanpa harus menambah class di HTML.</p>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--red);">State — Interaksi Pengguna</h3>
+      <table class="ref-table">
+        <tr><th>Pseudo-class</th><th>Keterangan</th></tr>
+        <tr><td class="pn">:hover</td><td>Kursor berada di atas elemen</td></tr>
+        <tr><td class="pn">:active</td><td>Elemen sedang ditekan/diklik</td></tr>
+        <tr><td class="pn">:focus</td><td>Elemen mendapat fokus (keyboard/klik)</td></tr>
+        <tr><td class="pn">:focus-visible</td><td>Fokus yang perlu ditampilkan visually (keyboard nav). Tidak aktif saat klik mouse.</td></tr>
+        <tr><td class="pn">:focus-within</td><td>Elemen ATAU salah satu anaknya sedang difokus. Berguna untuk styling form container.</td></tr>
+        <tr><td class="pn">:visited</td><td>Link yang sudah pernah dikunjungi</td></tr>
+        <tr><td class="pn">:link</td><td>Link yang belum pernah dikunjungi</td></tr>
+        <tr><td class="pn">:target</td><td>Elemen yang ID-nya sesuai hash URL saat ini. Contoh: <code>#section</code> di URL → <code>:target</code> aktif.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--red);">Form State</h3>
+      <table class="ref-table">
+        <tr><th>Pseudo-class</th><th>Keterangan</th></tr>
+        <tr><td class="pn">:checked</td><td>Checkbox/radio yang tercentang, atau option yang terpilih</td></tr>
+        <tr><td class="pn">:disabled</td><td>Input/button dengan atribut <code>disabled</code></td></tr>
+        <tr><td class="pn">:enabled</td><td>Input/button yang aktif (kebalikan :disabled)</td></tr>
+        <tr><td class="pn">:required</td><td>Input dengan atribut <code>required</code></td></tr>
+        <tr><td class="pn">:optional</td><td>Input tanpa atribut <code>required</code></td></tr>
+        <tr><td class="pn">:valid</td><td>Input dengan nilai yang valid sesuai constraint (type, pattern, dll)</td></tr>
+        <tr><td class="pn">:invalid</td><td>Input dengan nilai yang tidak valid</td></tr>
+        <tr><td class="pn">:in-range</td><td>Input number/range yang nilainya dalam batas min-max</td></tr>
+        <tr><td class="pn">:out-of-range</td><td>Input number/range yang nilainya di luar min-max</td></tr>
+        <tr><td class="pn">:placeholder-shown</td><td>Input yang menampilkan placeholder (masih kosong)</td></tr>
+        <tr><td class="pn">:read-only</td><td>Input dengan atribut <code>readonly</code></td></tr>
+        <tr><td class="pn">:read-write</td><td>Input yang bisa diedit (kebalikan :read-only)</td></tr>
+        <tr><td class="pn">:indeterminate</td><td>Checkbox dalam state tidak pasti (via JS), atau progress tanpa value</td></tr>
+        <tr><td class="pn">:autofill</td><td>Input yang nilai-nya diisi oleh autofill browser</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--red);">Structural — Posisi dalam DOM</h3>
+      <table class="ref-table">
+        <tr><th>Pseudo-class</th><th>Keterangan</th></tr>
+        <tr><td class="pn">:first-child</td><td>Elemen pertama di antara saudara-saudaranya</td></tr>
+        <tr><td class="pn">:last-child</td><td>Elemen terakhir di antara saudara-saudaranya</td></tr>
+        <tr><td class="pn">:only-child</td><td>Elemen yang satu-satunya anak dari parent</td></tr>
+        <tr><td class="pn">:nth-child(n)</td><td>Elemen ke-n. <code>2n</code>=genap, <code>2n+1</code>=ganjil, <code>3n</code>=kelipatan 3. Juga: <code>odd</code>, <code>even</code>.</td></tr>
+        <tr><td class="pn">:nth-last-child(n)</td><td>Seperti nth-child tapi dihitung dari belakang</td></tr>
+        <tr><td class="pn">:first-of-type</td><td>Elemen pertama dari tipe/tag yang sama di antara saudaranya</td></tr>
+        <tr><td class="pn">:last-of-type</td><td>Elemen terakhir dari tipe/tag yang sama</td></tr>
+        <tr><td class="pn">:nth-of-type(n)</td><td>Elemen ke-n dari tipe yang sama</td></tr>
+        <tr><td class="pn">:only-of-type</td><td>Satu-satunya elemen dari tipe itu di antara saudaranya</td></tr>
+        <tr><td class="pn">:empty</td><td>Elemen yang tidak punya anak (termasuk text node). Whitespace dihitung!</td></tr>
+        <tr><td class="pn">:root</td><td>Elemen root dokumen (biasanya <code>&lt;html&gt;</code>). Spesifisitas lebih tinggi dari <code>html</code>.</td></tr>
+        <tr><td class="pn">:scope</td><td>Elemen yang jadi scope selector saat ini. Di CSS biasa = :root.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--red);">Lainnya</h3>
+      <table class="ref-table">
+        <tr><th>Pseudo-class</th><th>Keterangan</th></tr>
+        <tr><td class="pn">:lang(id)</td><td>Elemen dengan atribut <code>lang</code> tertentu. Contoh: <code>:lang(ar)</code> untuk konten Arab.</td></tr>
+        <tr><td class="pn">:dir(ltr)</td><td>Elemen dengan arah teks kiri-ke-kanan atau kanan-ke-kiri.</td></tr>
+        <tr><td class="pn">:any-link</td><td>Semua link (<code>:link</code> + <code>:visited</code>)</td></tr>
+        <tr><td class="pn">:local-link</td><td>Link yang menuju URL di domain yang sama</td></tr>
+        <tr><td class="pn">:fullscreen</td><td>Elemen yang sedang dalam mode fullscreen</td></tr>
+        <tr><td class="pn">:picture-in-picture</td><td>Video yang sedang dalam mode picture-in-picture</td></tr>
+        <tr><td class="pn">:popover-open</td><td>Elemen popover yang sedang terbuka</td></tr>
+        <tr><td class="pn">:modal</td><td>Elemen yang sedang dalam mode modal (dialog terbuka)</td></tr>
+      </table>
+
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* :focus-within — highlight form saat aktif */</span>
+<span class="s">.form-group</span>              { <span class="p">border</span>: <span class="n">2px</span> solid <span class="v">transparent</span>; }
+<span class="s">.form-group:focus-within</span> { <span class="p">border-color</span>: <span class="v">#4f8ef7</span>; }
+
+<span class="c">/* :focus-visible — ring hanya untuk keyboard */</span>
+<span class="s">button:focus</span>         { <span class="p">outline</span>: <span class="v">none</span>; }
+<span class="s">button:focus-visible</span> { <span class="p">outline</span>: <span class="n">2px</span> solid <span class="v">#4f8ef7</span>; <span class="p">outline-offset</span>: <span class="n">2px</span>; }
+
+<span class="c">/* :target — highlight section yang di-navigate */</span>
+<span class="s">section:target</span> { <span class="p">background</span>: <span class="fn">rgba</span>(<span class="n">79,142,247,0.08</span>); }
+
+<span class="c">/* :placeholder-shown — label float */</span>
+<span class="s">.label</span>                          { <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">0</span>); }
+<span class="s">input:not(:placeholder-shown) + .label</span> { <span class="p">transform</span>: <span class="fn">translateY</span>(<span class="n">-24px</span>); }
+
+<span class="c">/* :empty — sembunyikan container kosong */</span>
+<span class="s">.error-msg:empty</span> { <span class="p">display</span>: <span class="v">none</span>; }
+
+<span class="c">/* :nth-child — zebra stripe tabel */</span>
+<span class="s">tr:nth-child(even)</span> { <span class="p">background</span>: <span class="fn">rgba</span>(<span class="n">255,255,255,0.03</span>); }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- :IS() :WHERE() :HAS() :NOT() -->
+    <section class="prop-section" id="pseudo-fn">
+      <div class="prop-header">
+        <span class="prop-tag">:is() :where() :has() :not()</span>
+        <span class="prop-name">Functional Pseudo-class</span>
+        <span class="prop-category cat-sel">Selector</span>
+      </div>
+      <p class="prop-desc">Pseudo-class fungsional yang menerima selector sebagai argumen. Sangat powerful untuk menyederhanakan selector yang kompleks.</p>
+      <table class="ref-table">
+        <tr><th>Fungsi</th><th>Spesifisitas</th><th>Keterangan</th></tr>
+        <tr><td class="pn">:is()</td><td>Mengambil dari selector terspesifik di dalam argumen</td><td>Grup selector. Pengganti daftar panjang selector yang sama.</td></tr>
+        <tr><td class="pn">:where()</td><td><strong>Selalu 0</strong></td><td>Sama seperti <code>:is()</code> tapi spesifisitas nol. Aman untuk override.</td></tr>
+        <tr><td class="pn">:has()</td><td>Mengambil dari argumen di dalamnya</td><td>"Parent selector" — pilih elemen berdasarkan anaknya atau yang mengikutinya.</td></tr>
+        <tr><td class="pn">:not()</td><td>Mengambil dari selector di dalam argumen</td><td>Pilih elemen yang TIDAK cocok. Sejak CSS4 bisa menerima selector kompleks.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Contoh</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* :is() — sederhanakan selector berulang */</span>
+<span class="c">/* Sebelum: */</span>
+<span class="s">h1 a, h2 a, h3 a, h4 a</span> { <span class="p">color</span>: <span class="v">inherit</span>; }
+<span class="c">/* Sesudah: */</span>
+<span class="s">:is(h1, h2, h3, h4) a</span>  { <span class="p">color</span>: <span class="v">inherit</span>; }
+
+<span class="c">/* :where() — reset dengan spesifisitas 0 */</span>
+<span class="s">:where(h1, h2, h3, h4, h5, h6)</span> { <span class="p">font-weight</span>: <span class="n">600</span>; } <span class="c">/* mudah di-override */</span>
+
+<span class="c">/* :has() — "parent selector" */</span>
+<span class="c">/* Card yang punya gambar → layout berbeda */</span>
+<span class="s">.card:has(img)</span> { <span class="p">display</span>: <span class="v">grid</span>; <span class="p">grid-template-columns</span>: <span class="n">1fr 2fr</span>; }
+
+<span class="c">/* Form yang punya input invalid */</span>
+<span class="s">form:has(:invalid)</span> { <span class="p">border-color</span>: <span class="v">#f87171</span>; }
+
+<span class="c">/* Label setelah checkbox yang tercentang */</span>
+<span class="s">input:checked + label</span> { <span class="p">color</span>: <span class="v">#34d399</span>; }
+
+<span class="c">/* :not() — semua link kecuali yang aktif */</span>
+<span class="s">.nav a:not(.active)</span> { <span class="p">opacity</span>: <span class="n">0.7</span>; }
+
+<span class="c">/* :not() dengan selector kompleks (CSS4) */</span>
+<span class="s">li:not(:first-child):not(:last-child)</span> { <span class="p">border-top</span>: <span class="n">1px</span> solid <span class="v">#333</span>; }
+
+<span class="c">/* :has() untuk deteksi konten dinamis */</span>
+<span class="s">.sidebar:has(> nav)</span> { <span class="p">padding-top</span>: <span class="n">0</span>; }
+<span class="s">body:has(.modal-open)</span> { <span class="p">overflow</span>: <span class="v">hidden</span>; }</pre>
+      </div>
+      <div class="tip good"><span class="tip-icon">✅</span><div class="tip-text"><strong>:has() adalah game changer!</strong> Pertama kalinya CSS bisa memilih elemen berdasarkan anaknya. Dulu hanya bisa dilakukan dengan JavaScript. Sudah didukung semua browser modern sejak 2023.</div></div>
+    </section>
+
 
   </main>
 </div>
@@ -1461,6 +2135,24 @@
   <a href="#selector" onclick="closeMenuDrawer()"><span class="prop-badge">sel</span> Selector</a>
   <a href="#pseudo" onclick="closeMenuDrawer()"><span class="prop-badge">::</span> Pseudo</a>
   <a href="#variable" onclick="closeMenuDrawer()"><span class="prop-badge">var()</span> Variables</a>
+  <div class="sidebar-section">Box Model Lanjutan</div>
+  <a href="#border-radius" onclick="closeMenuDrawer()"><span class="prop-badge">radius</span> Border Radius</a>
+  <a href="#outline" onclick="closeMenuDrawer()"><span class="prop-badge">outline</span> Outline</a>
+  <a href="#opacity" onclick="closeMenuDrawer()"><span class="prop-badge">opacity</span> Opacity</a>
+  <a href="#zindex" onclick="closeMenuDrawer()"><span class="prop-badge">z</span> Z-Index</a>
+  <div class="sidebar-section">Visual Lanjutan</div>
+  <a href="#filter" onclick="closeMenuDrawer()"><span class="prop-badge">filter</span> Filter</a>
+  <a href="#clip-path" onclick="closeMenuDrawer()"><span class="prop-badge">clip</span> Clip-path</a>
+  <a href="#object-fit" onclick="closeMenuDrawer()"><span class="prop-badge">obj</span> Object-fit</a>
+  <a href="#cursor" onclick="closeMenuDrawer()"><span class="prop-badge">cursor</span> Cursor</a>
+  <div class="sidebar-section">Layout Lanjutan</div>
+  <a href="#gap" onclick="closeMenuDrawer()"><span class="prop-badge">gap</span> Gap</a>
+  <a href="#scroll" onclick="closeMenuDrawer()"><span class="prop-badge">scroll</span> Scroll &amp; Snap</a>
+  <a href="#media" onclick="closeMenuDrawer()"><span class="prop-badge">@media</span> Media Queries</a>
+  <a href="#container" onclick="closeMenuDrawer()"><span class="prop-badge">@layer</span> Layer &amp; Container</a>
+  <div class="sidebar-section">Pseudo Lengkap</div>
+  <a href="#pseudo-class" onclick="closeMenuDrawer()"><span class="prop-badge">:</span> Pseudo-class</a>
+  <a href="#pseudo-fn" onclick="closeMenuDrawer()"><span class="prop-badge">:is()</span> :is() :where() :has()</a>
 </div>
 
 <script>
