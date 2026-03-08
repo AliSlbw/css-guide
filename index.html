@@ -31,6 +31,37 @@
     .sidebar-brand { padding: 0 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
     .sidebar-brand h1 { font-size: 1rem; font-weight: 700; color: var(--accent); }
     .sidebar-brand p { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+    /* Search */
+    .search-wrap { padding: 12px 16px 4px; }
+    .search-box {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 10px 7px 32px;
+      font-size: 0.8rem;
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .search-box::placeholder { color: var(--muted); }
+    .search-box:focus { border-color: var(--accent); }
+    .search-wrap { position: relative; }
+    .search-icon {
+      position: absolute;
+      left: 26px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+    .search-no-result { display:none; padding: 8px 20px; font-size: 0.78rem; color: var(--muted); }
+    .sidebar a.search-hidden { display: none; }
+    .sidebar-section.search-hidden { display: none; }
     .sidebar-section { padding: 6px 20px 2px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
     .sidebar a { display: flex; align-items: center; gap: 8px; padding: 8px 20px; font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: all 0.15s; border-left: 2px solid transparent; }
     .sidebar a:hover { color: var(--text); background: var(--surface2); }
@@ -100,7 +131,147 @@
     .pn { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-size: 0.8rem; }
     .pd { color: #94a3b8; }
 
-    @media (max-width: 768px) { .sidebar { display: none; } .main { padding: 24px 20px; } }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { padding: 24px 16px 100px; }
+
+      /* Bottom nav bar */
+      .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        z-index: 100;
+        padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+      }
+      .mobile-nav-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 0.62rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        padding: 4px 0;
+        transition: color 0.15s;
+      }
+      .mobile-nav-btn:active { color: var(--accent); }
+      .mobile-nav-btn .nav-icon { font-size: 1.1rem; }
+
+      /* Search modal */
+      .search-modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        z-index: 200;
+        align-items: flex-start;
+        padding-top: 60px;
+      }
+      .search-modal-overlay.open { display: flex; }
+      .search-modal {
+        background: var(--surface);
+        border-radius: 16px 16px 0 0;
+        width: 100%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+      }
+      .search-modal-header {
+        padding: 16px 16px 8px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+      }
+      .search-modal-input {
+        flex: 1;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+        color: var(--text);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        outline: none;
+      }
+      .search-modal-input:focus { border-color: var(--accent); }
+      .search-modal-cancel {
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .search-modal-results {
+        overflow-y: auto;
+        padding: 8px 0;
+        flex: 1;
+      }
+      .search-result-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        cursor: pointer;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text);
+        transition: background 0.1s;
+      }
+      .search-result-item:active { background: var(--surface2); }
+      .search-result-item .res-badge {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        background: var(--surface2);
+        color: var(--cyan);
+        padding: 2px 7px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .search-result-item .res-label { font-size: 0.88rem; }
+      .search-result-item .res-category { font-size: 0.72rem; color: var(--muted); margin-left: auto; }
+      .search-empty { padding: 32px 16px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+      /* Menu drawer */
+      .menu-drawer-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 200;
+      }
+      .menu-drawer-overlay.open { display: block; }
+      .menu-drawer {
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        width: 280px;
+        background: var(--surface);
+        z-index: 201;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        padding-bottom: 24px;
+      }
+      .menu-drawer.open { transform: translateX(0); }
+      .menu-drawer .sidebar-brand { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); }
+      .menu-drawer .sidebar-section { padding: 8px 20px 2px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+      .menu-drawer a { display: flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 0.85rem; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; }
+      .menu-drawer a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(249,115,22,0.07); }
+    }
+    @media (min-width: 769px) {
+      .mobile-nav, .search-modal-overlay, .menu-drawer-overlay { display: none !important; }
+    }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
@@ -114,6 +285,18 @@
       <h1>{ } Referensi CSS</h1>
       <p>Properties, nilai &amp; contoh kode</p>
     </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input
+        class="search-box"
+        type="text"
+        placeholder="Cari property... (flex, color, grid)"
+        id="sidebarSearch"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+    <div class="search-no-result" id="searchNoResult">Tidak ditemukan</div>
     <div class="sidebar-section">Box Model</div>
     <a href="#box-model" class="active"><span class="prop-badge">box</span> Box Model</a>
     <a href="#margin"><span class="prop-badge">margin</span> Margin</a>
@@ -925,6 +1108,76 @@
   </main>
 </div>
 
+<!-- Mobile bottom nav -->
+<div class="mobile-nav">
+  <button class="mobile-nav-btn" onclick="openMobileSearch()">
+    <span class="nav-icon">🔍</span>
+    <span>Cari</span>
+  </button>
+  <button class="mobile-nav-btn" onclick="openMenuDrawer()">
+    <span class="nav-icon">☰</span>
+    <span>Menu</span>
+  </button>
+  <button class="mobile-nav-btn" onclick="scrollToTop()">
+    <span class="nav-icon">↑</span>
+    <span>Atas</span>
+  </button>
+</div>
+
+<!-- Search modal -->
+<div class="search-modal-overlay" id="searchModalOverlay" onclick="closeMobileSearch(event)">
+  <div class="search-modal" onclick="event.stopPropagation()">
+    <div class="search-modal-header">
+      <input
+        class="search-modal-input"
+        type="text"
+        placeholder="Cari property... (flex, color, grid)"
+        id="mobileSearchInput"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="search-modal-cancel" onclick="closeMobileSearch()">Batal</button>
+    </div>
+    <div class="search-modal-results" id="mobileSearchResults"></div>
+  </div>
+</div>
+
+<!-- Menu drawer -->
+<div class="menu-drawer-overlay" id="menuDrawerOverlay" onclick="closeMenuDrawer()"></div>
+<div class="menu-drawer" id="menuDrawer">
+  <div class="sidebar-brand">
+    <h1>{ } Referensi CSS</h1>
+    <p>Properties, nilai &amp; contoh kode</p>
+  </div>
+  <div class="sidebar-section">Box Model</div>
+  <a href="#box-model" onclick="closeMenuDrawer()"><span class="prop-badge">box</span> Box Model</a>
+  <a href="#margin" onclick="closeMenuDrawer()"><span class="prop-badge">margin</span> Margin</a>
+  <a href="#padding" onclick="closeMenuDrawer()"><span class="prop-badge">padding</span> Padding</a>
+  <a href="#border" onclick="closeMenuDrawer()"><span class="prop-badge">border</span> Border</a>
+  <div class="sidebar-section">Teks &amp; Font</div>
+  <a href="#font" onclick="closeMenuDrawer()"><span class="prop-badge">font-*</span> Font</a>
+  <a href="#text" onclick="closeMenuDrawer()"><span class="prop-badge">text-*</span> Text</a>
+  <a href="#color" onclick="closeMenuDrawer()"><span class="prop-badge">color</span> Color</a>
+  <div class="sidebar-section">Layout</div>
+  <a href="#display" onclick="closeMenuDrawer()"><span class="prop-badge">display</span> Display</a>
+  <a href="#flexbox" onclick="closeMenuDrawer()"><span class="prop-badge">flex</span> Flexbox</a>
+  <a href="#grid" onclick="closeMenuDrawer()"><span class="prop-badge">grid</span> Grid</a>
+  <a href="#position" onclick="closeMenuDrawer()"><span class="prop-badge">position</span> Position</a>
+  <div class="sidebar-section">Ukuran</div>
+  <a href="#sizing" onclick="closeMenuDrawer()"><span class="prop-badge">width</span> Width &amp; Height</a>
+  <a href="#overflow" onclick="closeMenuDrawer()"><span class="prop-badge">overflow</span> Overflow</a>
+  <div class="sidebar-section">Visual</div>
+  <a href="#background" onclick="closeMenuDrawer()"><span class="prop-badge">bg</span> Background</a>
+  <a href="#shadow" onclick="closeMenuDrawer()"><span class="prop-badge">shadow</span> Shadow</a>
+  <a href="#transform" onclick="closeMenuDrawer()"><span class="prop-badge">transform</span> Transform</a>
+  <a href="#transition" onclick="closeMenuDrawer()"><span class="prop-badge">transition</span> Transition</a>
+  <a href="#animation" onclick="closeMenuDrawer()"><span class="prop-badge">@keyframes</span> Animation</a>
+  <div class="sidebar-section">Selector</div>
+  <a href="#selector" onclick="closeMenuDrawer()"><span class="prop-badge">sel</span> Selector</a>
+  <a href="#pseudo" onclick="closeMenuDrawer()"><span class="prop-badge">::</span> Pseudo</a>
+  <a href="#variable" onclick="closeMenuDrawer()"><span class="prop-badge">var()</span> Variables</a>
+</div>
+
 <script>
   function copyCode(btn) {
     const pre = btn.closest('.code-block').querySelector('pre');
@@ -946,6 +1199,128 @@
     });
   }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
   sections.forEach(s => observer.observe(s));
+
+  // Sidebar search
+  const searchInput = document.getElementById('sidebarSearch');
+  const noResult    = document.getElementById('searchNoResult');
+
+  searchInput.addEventListener('input', function () {
+    const q = this.value.trim().toLowerCase();
+    const allLinks    = document.querySelectorAll('.sidebar a');
+    const allSections = document.querySelectorAll('.sidebar-section');
+
+    if (!q) {
+      allLinks.forEach(l => l.classList.remove('search-hidden'));
+      allSections.forEach(s => s.classList.remove('search-hidden'));
+      noResult.style.display = 'none';
+      return;
+    }
+
+    let anyVisible = false;
+
+    allLinks.forEach(link => {
+      const text = link.textContent.toLowerCase();
+      const href = (link.getAttribute('href') || '').toLowerCase();
+      const match = text.includes(q) || href.includes(q);
+      link.classList.toggle('search-hidden', !match);
+      if (match) anyVisible = true;
+    });
+
+    // Hide section headers with no visible links
+    allSections.forEach(section => {
+      let next = section.nextElementSibling;
+      let hasVisible = false;
+      while (next && !next.classList.contains('sidebar-section')) {
+        if (next.tagName === 'A' && !next.classList.contains('search-hidden')) {
+          hasVisible = true;
+          break;
+        }
+        next = next.nextElementSibling;
+      }
+      section.classList.toggle('search-hidden', !hasVisible);
+    });
+
+    noResult.style.display = anyVisible ? 'none' : 'block';
+  });
+
+  // Clear search on Escape
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      this.value = '';
+      this.dispatchEvent(new Event('input'));
+    }
+  });
+
+  // ── Mobile search ──
+  const allNavLinks = document.querySelectorAll('.sidebar a, .menu-drawer a');
+
+  // Build searchable index from sidebar links
+  function buildIndex() {
+    const sidebar = document.querySelectorAll('nav.sidebar a');
+    return Array.from(sidebar).map(a => ({
+      href: a.getAttribute('href'),
+      badge: a.querySelector('.prop-badge') ? a.querySelector('.prop-badge').textContent : '',
+      label: a.textContent.trim(),
+    }));
+  }
+  const searchIndex = buildIndex();
+
+  function openMobileSearch() {
+    document.getElementById('searchModalOverlay').classList.add('open');
+    setTimeout(() => document.getElementById('mobileSearchInput').focus(), 100);
+    renderMobileResults('');
+  }
+
+  function closeMobileSearch(e) {
+    if (e && e.target !== document.getElementById('searchModalOverlay')) return;
+    document.getElementById('searchModalOverlay').classList.remove('open');
+    document.getElementById('mobileSearchInput').value = '';
+  }
+
+  function renderMobileResults(q) {
+    const container = document.getElementById('mobileSearchResults');
+    const items = q
+      ? searchIndex.filter(i => i.label.toLowerCase().includes(q) || i.href.toLowerCase().includes(q) || i.badge.toLowerCase().includes(q))
+      : searchIndex;
+
+    if (!items.length) {
+      container.innerHTML = '<div class="search-empty">Tidak ditemukan 🤔</div>';
+      return;
+    }
+    container.innerHTML = items.map(i => `
+      <a class="search-result-item" href="${i.href}" onclick="closeMobileSearch();closeMobileSearch({target:null})">
+        <span class="res-badge">${i.badge || '?'}</span>
+        <span class="res-label">${i.label.replace(i.badge, '').trim()}</span>
+      </a>`).join('');
+
+    // Fix close on link click
+    container.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('searchModalOverlay').classList.remove('open');
+        document.getElementById('mobileSearchInput').value = '';
+      });
+    });
+  }
+
+  document.getElementById('mobileSearchInput').addEventListener('input', function() {
+    renderMobileResults(this.value.trim().toLowerCase());
+  });
+
+  // ── Menu drawer ──
+  function openMenuDrawer() {
+    document.getElementById('menuDrawer').classList.add('open');
+    document.getElementById('menuDrawerOverlay').classList.add('open');
+  }
+  function closeMenuDrawer() {
+    document.getElementById('menuDrawer').classList.remove('open');
+    document.getElementById('menuDrawerOverlay').classList.remove('open');
+  }
+
+  // ── Scroll to top ──
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
 </script>
 </body>
 </html>
