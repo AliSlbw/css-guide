@@ -324,6 +324,12 @@
     <a href="#selector"><span class="prop-badge">sel</span> Selector</a>
     <a href="#pseudo"><span class="prop-badge">::</span> Pseudo</a>
     <a href="#variable"><span class="prop-badge">var()</span> Variables</a>
+    <div class="sidebar-section">Value Types</div>
+    <a href="#value-keywords"><span class="prop-badge">kw</span> Keywords</a>
+    <a href="#value-length"><span class="prop-badge">px</span> Length &amp; Size</a>
+    <a href="#value-color"><span class="prop-badge">col</span> Color</a>
+    <a href="#value-functions"><span class="prop-badge">fn()</span> Functions</a>
+    <a href="#value-global"><span class="prop-badge">inh</span> Global Values</a>
   </nav>
 
   <main class="main">
@@ -1102,6 +1108,285 @@
       <div class="tip good">
         <span class="tip-icon">✅</span>
         <div class="tip-text"><strong>Best Practice:</strong> Selalu definisikan warna, ukuran, dan spacing di <code>:root</code> sebagai CSS variables — membuat kode mudah diubah dan konsisten di seluruh proyek.</div>
+      </div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- VALUE KEYWORDS -->
+    <section class="prop-section" id="value-keywords">
+      <div class="prop-header">
+        <span class="prop-tag">keywords</span>
+        <span class="prop-name">CSS Value Keywords</span>
+        <span class="prop-category" style="background:rgba(167,139,250,0.12);color:var(--purple);">Value Types</span>
+      </div>
+      <p class="prop-desc">Keyword adalah nilai teks tetap yang sudah didefinisikan standar CSS. Tidak perlu tanda kutip. Tiap property punya set keyword yang valid berbeda-beda.</p>
+      <div class="tip info"><span class="tip-icon">💡</span><div class="tip-text"><strong>Ingat:</strong> Keyword CSS <em>case-insensitive</em> — <code>CENTER</code> dan <code>center</code> keduanya valid. Konvensinya selalu huruf kecil.</div></div>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Display &amp; Visibility</h3>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Property</th><th>Efek</th></tr>
+        <tr><td class="pn">block</td><td>display</td><td>Elemen mengisi lebar penuh, mulai baris baru</td></tr>
+        <tr><td class="pn">inline</td><td>display</td><td>Ikut alur teks, tidak bisa diset width/height</td></tr>
+        <tr><td class="pn">inline-block</td><td>display</td><td>Ikut alur teks tapi bisa diset dimensi</td></tr>
+        <tr><td class="pn">flex</td><td>display</td><td>Aktifkan Flexbox pada container</td></tr>
+        <tr><td class="pn">grid</td><td>display</td><td>Aktifkan CSS Grid pada container</td></tr>
+        <tr><td class="pn">none</td><td>display</td><td>Sembunyikan elemen, hilangkan dari layout (tidak ada ruang)</td></tr>
+        <tr><td class="pn">visible</td><td>visibility</td><td>Elemen terlihat (default)</td></tr>
+        <tr><td class="pn">hidden</td><td>visibility</td><td>Tidak terlihat tapi masih menempati ruang di layout</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Position</h3>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Property</th><th>Efek</th></tr>
+        <tr><td class="pn">static</td><td>position</td><td>Posisi normal mengikuti flow dokumen (default)</td></tr>
+        <tr><td class="pn">relative</td><td>position</td><td>Geser dari posisi normal, ruang asli tetap ada</td></tr>
+        <tr><td class="pn">absolute</td><td>position</td><td>Posisi relatif terhadap ancestor positioned terdekat</td></tr>
+        <tr><td class="pn">fixed</td><td>position</td><td>Posisi relatif terhadap viewport, tidak ikut scroll</td></tr>
+        <tr><td class="pn">sticky</td><td>position</td><td>Relative sampai threshold scroll, lalu jadi fixed</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Text &amp; Font</h3>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Property</th><th>Efek</th></tr>
+        <tr><td class="pn">left / right / center / justify</td><td>text-align</td><td>Perataan teks horizontal</td></tr>
+        <tr><td class="pn">uppercase / lowercase / capitalize</td><td>text-transform</td><td>Transformasi huruf besar/kecil</td></tr>
+        <tr><td class="pn">underline / overline / line-through</td><td>text-decoration</td><td>Dekorasi garis pada teks</td></tr>
+        <tr><td class="pn">ellipsis</td><td>text-overflow</td><td>Tampilkan … saat teks melebihi container</td></tr>
+        <tr><td class="pn">nowrap</td><td>white-space</td><td>Teks tidak wrap ke baris baru</td></tr>
+        <tr><td class="pn">bold / normal / lighter / bolder</td><td>font-weight</td><td>Ketebalan font. Angka 100–900 juga valid</td></tr>
+        <tr><td class="pn">italic / oblique</td><td>font-style</td><td>Gaya font miring</td></tr>
+        <tr><td class="pn">serif / sans-serif / monospace</td><td>font-family</td><td>Generic font family sebagai fallback terakhir</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Overflow, Cursor &amp; Box</h3>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Property</th><th>Efek</th></tr>
+        <tr><td class="pn">visible / hidden / scroll / auto</td><td>overflow</td><td>Cara konten yang melebihi container ditangani</td></tr>
+        <tr><td class="pn">pointer / default / not-allowed / grab / text / wait</td><td>cursor</td><td>Bentuk kursor sesuai konteks interaksi</td></tr>
+        <tr><td class="pn">content-box</td><td>box-sizing</td><td>Width = konten saja. Padding &amp; border ditambah di luar (default)</td></tr>
+        <tr><td class="pn">border-box</td><td>box-sizing</td><td>Width sudah termasuk padding &amp; border. Selalu pakai ini!</td></tr>
+        <tr><td class="pn">solid / dashed / dotted / double / none</td><td>border-style</td><td>Gaya garis border</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Flexbox Alignment</h3>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Property</th><th>Efek</th></tr>
+        <tr><td class="pn">flex-start / flex-end / center</td><td>justify-content, align-items</td><td>Alignment item di sumbu flex</td></tr>
+        <tr><td class="pn">space-between / space-around / space-evenly</td><td>justify-content</td><td>Distribusi jarak antar item</td></tr>
+        <tr><td class="pn">stretch / baseline</td><td>align-items</td><td>Item isi tinggi container / sejajar baseline teks</td></tr>
+        <tr><td class="pn">row / column / row-reverse / column-reverse</td><td>flex-direction</td><td>Arah sumbu utama flex</td></tr>
+        <tr><td class="pn">wrap / nowrap / wrap-reverse</td><td>flex-wrap</td><td>Apakah item boleh pindah baris jika penuh</td></tr>
+        <tr><td class="pn">ease / linear / ease-in / ease-out / ease-in-out</td><td>transition-timing-function</td><td>Kurva kecepatan animasi/transisi</td></tr>
+        <tr><td class="pn">forwards / backwards / both</td><td>animation-fill-mode</td><td><code>forwards</code> = tahan di state akhir animasi</td></tr>
+        <tr><td class="pn">cover / contain / auto</td><td>background-size</td><td><code>cover</code> = isi penuh, <code>contain</code> = terlihat semua</td></tr>
+      </table>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- VALUE LENGTH -->
+    <section class="prop-section" id="value-length">
+      <div class="prop-header">
+        <span class="prop-tag">&lt;length&gt; / &lt;percentage&gt;</span>
+        <span class="prop-name">Length, Size &amp; Tipe Numerik</span>
+        <span class="prop-category" style="background:rgba(167,139,250,0.12);color:var(--purple);">Value Types</span>
+      </div>
+      <p class="prop-desc">CSS memiliki berbagai satuan untuk menyatakan ukuran, jarak, dan waktu. Memilih satuan yang tepat sangat menentukan responsivitas dan fleksibilitas layout.</p>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Satuan Absolut</h3>
+      <table class="ref-table">
+        <tr><th style="width:70px;">Satuan</th><th>Nama</th><th>Keterangan</th></tr>
+        <tr><td class="pn">px</td><td>Pixel</td><td>Satuan paling umum. 1px = 1 device-independent pixel.</td></tr>
+        <tr><td class="pn">pt</td><td>Point</td><td>1pt = 1/72 inci. Dari tipografi cetak. Jarang dipakai di web.</td></tr>
+        <tr><td class="pn">cm / mm / in</td><td>Fisik</td><td>Ukuran fisik nyata. Berguna untuk print stylesheet.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Satuan Relatif — Font</h3>
+      <table class="ref-table">
+        <tr><th style="width:70px;">Satuan</th><th>Relatif terhadap</th><th>Keterangan</th></tr>
+        <tr><td class="pn">em</td><td>font-size elemen itu sendiri</td><td>2em = 2× font-size. Bisa berganda jika nested — hati-hati.</td></tr>
+        <tr><td class="pn">rem</td><td>font-size root/html</td><td>Lebih konsisten. Default 1rem = 16px. Direkomendasikan untuk font.</td></tr>
+        <tr><td class="pn">ch</td><td>Lebar karakter "0"</td><td><code>max-width: 65ch</code> = batas ideal panjang baris teks.</td></tr>
+        <tr><td class="pn">ex / lh / cap</td><td>Metrik font lainnya</td><td>Satuan tipografi presisi tinggi.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Satuan Relatif — Viewport</h3>
+      <table class="ref-table">
+        <tr><th style="width:70px;">Satuan</th><th>Makna</th><th>Keterangan</th></tr>
+        <tr><td class="pn">vw</td><td>1% lebar viewport</td><td><code>100vw</code> = lebar penuh layar.</td></tr>
+        <tr><td class="pn">vh</td><td>1% tinggi viewport</td><td><code>100vh</code> = tinggi penuh. Di mobile bisa bermasalah saat address bar muncul.</td></tr>
+        <tr><td class="pn">dvh</td><td>Dynamic viewport height</td><td>Solusi mobile — tinggi real saat address bar muncul/hilang.</td></tr>
+        <tr><td class="pn">vmin / vmax</td><td>Dimensi terkecil/terbesar</td><td>Berguna untuk elemen yang adaptif portrait/landscape.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Satuan Lain</h3>
+      <table class="ref-table">
+        <tr><th style="width:70px;">Satuan</th><th>Makna</th><th>Keterangan</th></tr>
+        <tr><td class="pn">%</td><td>Persentase</td><td>Relatif tergantung property. <code>width: 50%</code> = 50% lebar parent.</td></tr>
+        <tr><td class="pn">fr</td><td>Fraction (Grid)</td><td><code>1fr</code> = 1 bagian ruang tersedia. <code>grid-template-columns: 1fr 2fr</code> = rasio 1:2.</td></tr>
+        <tr><td class="pn">deg / rad / turn</td><td>Sudut</td><td><code>360deg = 1turn</code>. Untuk <code>rotate()</code>, <code>linear-gradient()</code>, dll.</td></tr>
+        <tr><td class="pn">s / ms</td><td>Waktu</td><td>Untuk transition/animation duration. <code>1s = 1000ms</code>.</td></tr>
+      </table>
+
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Perbandingan Satuan</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* px — ukuran tetap */</span>
+<span class="s">.card</span> { <span class="p">border-radius</span>: <span class="n">12px</span>; }
+
+<span class="c">/* rem — font konsisten */</span>
+<span class="s">html</span> { <span class="p">font-size</span>: <span class="n">16px</span>; }
+<span class="s">h1</span>   { <span class="p">font-size</span>: <span class="n">2rem</span>; }    <span class="c">/* = 32px */</span>
+<span class="s">p</span>    { <span class="p">font-size</span>: <span class="n">1rem</span>; }    <span class="c">/* = 16px */</span>
+
+<span class="c">/* ch — batas lebar teks ideal */</span>
+<span class="s">article</span> { <span class="p">max-width</span>: <span class="n">65ch</span>; }
+
+<span class="c">/* dvh — tinggi layar mobile */</span>
+<span class="s">.hero</span> { <span class="p">min-height</span>: <span class="n">100dvh</span>; }
+
+<span class="c">/* fr — grid columns */</span>
+<span class="s">.grid</span> { <span class="p">grid-template-columns</span>: <span class="n">1fr</span> <span class="n">2fr</span> <span class="n">1fr</span>; }
+
+<span class="c">/* clamp() — fluid typography */</span>
+<span class="s">h1</span> { <span class="p">font-size</span>: <span class="fn">clamp</span>(<span class="n">1.5rem</span>, <span class="n">4vw</span>, <span class="n">3rem</span>); }</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- VALUE COLOR -->
+    <section class="prop-section" id="value-color">
+      <div class="prop-header">
+        <span class="prop-tag">&lt;color&gt;</span>
+        <span class="prop-name">CSS Color Values</span>
+        <span class="prop-category" style="background:rgba(167,139,250,0.12);color:var(--purple);">Value Types</span>
+      </div>
+      <p class="prop-desc">CSS mendukung berbagai format penulisan warna. Semuanya valid di property apapun yang menerima nilai <code>&lt;color&gt;</code> seperti <code>color</code>, <code>background</code>, <code>border-color</code>, <code>box-shadow</code>, dll.</p>
+      <table class="ref-table">
+        <tr><th>Format</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">Named color</td><td class="pn" style="color:var(--green);">red, tomato, cornflowerblue</td><td>148 nama warna bawaan CSS.</td></tr>
+        <tr><td class="pn">HEX</td><td class="pn" style="color:var(--green);">#ff6600 / #f60</td><td>Format paling umum. 3 digit = shorthand jika tiap pasang sama.</td></tr>
+        <tr><td class="pn">HEX + alpha</td><td class="pn" style="color:var(--green);">#ff660080</td><td>2 digit terakhir = opacity. <code>ff</code>=opak, <code>80</code>=50%, <code>00</code>=bening.</td></tr>
+        <tr><td class="pn">rgb() / rgba()</td><td class="pn" style="color:var(--green);">rgb(255, 102, 0, 0.5)</td><td>Nilai 0–255 untuk R,G,B. Alpha 0–1.</td></tr>
+        <tr><td class="pn">rgb() modern</td><td class="pn" style="color:var(--green);">rgb(255 102 0 / 50%)</td><td>Sintaks CSS Color Level 4. Spasi bukan koma, alpha pakai slash.</td></tr>
+        <tr><td class="pn">hsl() / hsla()</td><td class="pn" style="color:var(--green);">hsl(24, 100%, 50%)</td><td>Hue (0–360°), Saturation (%), Lightness (%). Intuitif untuk variasi warna.</td></tr>
+        <tr><td class="pn">oklch()</td><td class="pn" style="color:var(--green);">oklch(0.7 0.2 50)</td><td>Lightness, Chroma, Hue. Perceptually uniform. Standar terbaru.</td></tr>
+        <tr><td class="pn">color-mix()</td><td class="pn" style="color:var(--green);">color-mix(in oklch, red 40%, blue)</td><td>Mencampur dua warna dalam color space tertentu.</td></tr>
+        <tr><td class="pn">currentColor</td><td class="pn" style="color:var(--green);">border: 1px solid currentColor</td><td>Mengambil nilai dari property <code>color</code> elemen itu sendiri.</td></tr>
+        <tr><td class="pn">transparent</td><td class="pn" style="color:var(--green);">background: transparent</td><td>Setara <code>rgba(0,0,0,0)</code> — sepenuhnya bening.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Format Warna</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Semua ini warna merah yang sama */</span>
+<span class="s">.el</span> { <span class="p">color</span>: <span class="v">red</span>; }
+<span class="s">.el</span> { <span class="p">color</span>: <span class="v">#ff0000</span>; }
+<span class="s">.el</span> { <span class="p">color</span>: <span class="fn">rgb</span>(<span class="n">255</span>, <span class="n">0</span>, <span class="n">0</span>); }
+<span class="s">.el</span> { <span class="p">color</span>: <span class="fn">hsl</span>(<span class="n">0</span>, <span class="n">100%</span>, <span class="n">50%</span>); }
+
+<span class="c">/* Transparansi */</span>
+<span class="s">.overlay</span> { <span class="p">background</span>: <span class="fn">rgb</span>(<span class="n">0 0 0 / 50%</span>); }
+
+<span class="c">/* currentColor — border ikut warna teks */</span>
+<span class="s">.btn</span> {
+  <span class="p">color</span>: <span class="v">#f97316</span>;
+  <span class="p">border</span>: <span class="n">2px</span> solid <span class="v">currentColor</span>;
+}
+
+<span class="c">/* oklch — warna modern */</span>
+<span class="s">:root</span> {
+  <span class="p">--brand</span>: <span class="fn">oklch</span>(<span class="n">0.65 0.22 250</span>);
+  <span class="p">--brand-light</span>: <span class="fn">oklch</span>(<span class="n">0.85 0.12 250</span>);
+}</pre>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- VALUE FUNCTIONS -->
+    <section class="prop-section" id="value-functions">
+      <div class="prop-header">
+        <span class="prop-tag">fn()</span>
+        <span class="prop-name">CSS Functions sebagai Value</span>
+        <span class="prop-category" style="background:rgba(167,139,250,0.12);color:var(--purple);">Value Types</span>
+      </div>
+      <p class="prop-desc">CSS punya banyak fungsi bawaan yang menghasilkan nilai — bisa dipakai langsung sebagai value dari property apapun yang kompatibel.</p>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Fungsi Matematika</h3>
+      <table class="ref-table">
+        <tr><th>Fungsi</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">calc()</td><td class="pn">calc(100% - 48px)</td><td>Operasi matematika dengan satuan berbeda. Spasi wajib di sekitar + dan -.</td></tr>
+        <tr><td class="pn">min()</td><td class="pn">min(50%, 400px)</td><td>Ambil nilai terkecil. Berguna untuk width responsif dengan batas maksimum.</td></tr>
+        <tr><td class="pn">max()</td><td class="pn">max(2rem, 24px)</td><td>Ambil nilai terbesar. Berguna untuk memastikan ukuran minimum.</td></tr>
+        <tr><td class="pn">clamp()</td><td class="pn">clamp(1rem, 4vw, 2rem)</td><td><code>clamp(min, ideal, max)</code> — fluid typography! Nilai ideal tapi tidak kurang dari min atau lebih dari max.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Fungsi Gradien</h3>
+      <table class="ref-table">
+        <tr><th>Fungsi</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">linear-gradient()</td><td class="pn">linear-gradient(to right, #f00, #00f)</td><td>Gradien linear. Arah bisa: <code>to right</code>, <code>45deg</code>, dll.</td></tr>
+        <tr><td class="pn">radial-gradient()</td><td class="pn">radial-gradient(circle, #f00, #00f)</td><td>Gradien melingkar dari pusat ke tepi.</td></tr>
+        <tr><td class="pn">conic-gradient()</td><td class="pn">conic-gradient(red, yellow, green, red)</td><td>Gradien memutar seperti jarum jam. Berguna untuk pie chart CSS.</td></tr>
+        <tr><td class="pn">repeating-linear-gradient()</td><td class="pn">repeating-linear-gradient(45deg, #000 0 10px, #fff 10px 20px)</td><td>Gradien diulang otomatis — untuk pattern stripe.</td></tr>
+      </table>
+
+      <h3 style="margin:1.2rem 0 0.6rem;font-size:0.88rem;color:var(--purple);">Fungsi Transform &amp; Filter</h3>
+      <table class="ref-table">
+        <tr><th>Fungsi</th><th>Contoh</th><th>Keterangan</th></tr>
+        <tr><td class="pn">translate() / translateX() / translateY()</td><td class="pn">translate(20px, -10px)</td><td>Menggeser elemen. Lebih performa dari mengubah top/left.</td></tr>
+        <tr><td class="pn">scale()</td><td class="pn">scale(1.5)</td><td>Memperbesar/memperkecil. <code>scale(-1)</code> = flip.</td></tr>
+        <tr><td class="pn">rotate()</td><td class="pn">rotate(45deg)</td><td>Rotasi 2D.</td></tr>
+        <tr><td class="pn">blur() / brightness() / contrast() / grayscale()</td><td class="pn">blur(8px)</td><td>Filter visual untuk property <code>filter</code> dan <code>backdrop-filter</code>.</td></tr>
+        <tr><td class="pn">drop-shadow()</td><td class="pn">drop-shadow(2px 4px 8px black)</td><td>Shadow mengikuti bentuk konten, bukan kotak. Beda dari <code>box-shadow</code>.</td></tr>
+        <tr><td class="pn">repeat() / minmax() / fit-content()</td><td class="pn">repeat(auto-fill, minmax(200px, 1fr))</td><td>Fungsi khusus CSS Grid untuk mendefinisikan track.</td></tr>
+      </table>
+    </section>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:0 0 48px;"/>
+
+    <!-- VALUE GLOBAL -->
+    <section class="prop-section" id="value-global">
+      <div class="prop-header">
+        <span class="prop-tag">inherit / initial / unset / revert</span>
+        <span class="prop-name">CSS Global Values</span>
+        <span class="prop-category" style="background:rgba(167,139,250,0.12);color:var(--purple);">Value Types</span>
+      </div>
+      <p class="prop-desc">Global values adalah keyword khusus yang bisa digunakan pada <strong>property CSS apapun</strong>. Mengontrol cara nilai property diwariskan atau di-reset.</p>
+      <table class="ref-table">
+        <tr><th style="width:120px;">Keyword</th><th>Makna</th><th>Kapan Pakai</th></tr>
+        <tr><td class="pn">inherit</td><td>Gunakan nilai dari parent. Paksa pewarisan meski property tidak mewarisi secara default.</td><td>Saat ingin anak ikut warna/font parent. Contoh: <code>color: inherit</code> pada link.</td></tr>
+        <tr><td class="pn">initial</td><td>Reset ke nilai bawaan standar CSS untuk property tersebut.</td><td><code>display: initial</code> = <code>inline</code>, bukan <code>block</code> seperti browser default untuk div.</td></tr>
+        <tr><td class="pn">unset</td><td>Jika mewarisi → seperti <code>inherit</code>; jika tidak → seperti <code>initial</code>.</td><td>Paling fleksibel. <code>all: unset</code> untuk reset total komponen.</td></tr>
+        <tr><td class="pn">revert</td><td>Kembalikan ke nilai default browser/user-agent stylesheet.</td><td>Saat ingin elemen terlihat seperti default browser.</td></tr>
+        <tr><td class="pn">auto</td><td>Browser hitung nilai yang masuk akal. Berbeda tiap property.</td><td><code>margin: 0 auto</code> = centering, <code>width: auto</code> = ikut konten.</td></tr>
+        <tr><td class="pn">currentColor</td><td>Mengacu pada nilai property <code>color</code> elemen itu sendiri.</td><td>Berguna agar border, shadow, atau fill SVG otomatis ikut warna teks.</td></tr>
+        <tr><td class="pn">transparent</td><td>Setara <code>rgba(0,0,0,0)</code> — warna sepenuhnya bening.</td><td>Berguna untuk transisi warna ke transparan.</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><div class="dots"><span></span><span></span><span></span></div><span>Global Values dalam Praktik</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+        <pre><span class="c">/* Reset total komponen */</span>
+<span class="s">button</span> {
+  <span class="p">all</span>: <span class="v">unset</span>;
+  <span class="p">cursor</span>: <span class="v">pointer</span>;
+  <span class="p">display</span>: <span class="v">inline-flex</span>;
+}
+
+<span class="c">/* inherit — link ikut warna parent */</span>
+<span class="s">.container</span> { <span class="p">color</span>: <span class="v">hotpink</span>; }
+<span class="s">.container a</span> { <span class="p">color</span>: <span class="v">inherit</span>; }
+
+<span class="c">/* auto — centering klasik */</span>
+<span class="s">.wrapper</span> { <span class="p">width</span>: <span class="n">800px</span>; <span class="p">margin</span>: <span class="v">0 auto</span>; }
+
+<span class="c">/* currentColor — SVG icon ikut warna teks */</span>
+<span class="s">.icon</span> { <span class="p">color</span>: <span class="v">#f97316</span>; }
+<span class="s">.icon svg</span> { <span class="p">fill</span>: <span class="v">currentColor</span>; }
+
+<span class="c">/* revert — h1 tampil seperti default browser */</span>
+<span class="s">.prose h1</span> { <span class="p">all</span>: <span class="v">revert</span>; }</pre>
+      </div>
+      <div class="tip good">
+        <span class="tip-icon">✅</span>
+        <div class="tip-text"><strong>Tips reset komponen:</strong> Gunakan <code>all: unset</code> lalu tambahkan ulang hanya style yang dibutuhkan. Lebih bersih dari mereset satu per satu.</div>
       </div>
     </section>
 
