@@ -1,0 +1,127 @@
+// CSS Property Reference — data source
+// Each category holds a list of properties: { prop, shorthand, desc, syntax, values, demo }
+// demo: HTML string with inline styles that visually demonstrates the property
+
+const CSS_REFERENCE = [
+  {
+    category: "Box Model",
+    properties: [
+      { prop: "width", desc: "Sets the width of an element's content box.", syntax: "width: 200px;", values: "px, %, vw, auto, fit-content", demo: "<div style='width:120px;background:#ff8c42;height:24px;border-radius:4px'></div>" },
+      { prop: "height", desc: "Sets the height of an element's content box.", syntax: "height: 100px;", values: "px, %, vh, auto", demo: "<div style='height:40px;width:60px;background:#ff8c42;border-radius:4px'></div>" },
+      { prop: "margin", shorthand: true, desc: "Sets space outside an element, pushing other elements away.", syntax: "margin: 10px 20px;", values: "px, %, auto, shorthand for top/right/bottom/left", demo: "<div style='background:#22303d;padding:4px'><div style='margin:14px;background:#ff8c42;height:20px;border-radius:4px'></div></div>" },
+      { prop: "padding", shorthand: true, desc: "Sets space inside an element, between its border and content.", syntax: "padding: 16px;", values: "px, %, shorthand for top/right/bottom/left", demo: "<div style='background:#ff8c42;padding:14px;border-radius:4px;display:inline-block;color:#11161c'>content</div>" },
+      { prop: "border", shorthand: true, desc: "Shorthand setting an element's border width, style, and color.", syntax: "border: 2px solid #ff8c42;", values: "width style color", demo: "<div style='border:2px solid #ff8c42;padding:8px;border-radius:4px'>bordered</div>" },
+      { prop: "box-sizing", desc: "Determines whether padding and border are included in an element's size.", syntax: "box-sizing: border-box;", values: "content-box, border-box", demo: "" },
+      { prop: "max-width", desc: "Caps how wide an element is allowed to grow.", syntax: "max-width: 600px;", values: "px, %, none", demo: "" },
+      { prop: "min-height", desc: "Sets the smallest height an element is allowed to shrink to.", syntax: "min-height: 100vh;", values: "px, %, vh", demo: "" },
+    ],
+  },
+  {
+    category: "Typography",
+    properties: [
+      { prop: "font-family", desc: "Specifies the typeface used to render text.", syntax: "font-family: 'Inter', sans-serif;", values: "font name, generic family fallback", demo: "<span style='font-family:Georgia,serif'>Serif sample</span>" },
+      { prop: "font-size", desc: "Sets the size of text.", syntax: "font-size: 1.2rem;", values: "px, rem, em, %", demo: "<span style='font-size:1.4rem'>Larger text</span>" },
+      { prop: "font-weight", desc: "Sets how bold or thin text appears.", syntax: "font-weight: 600;", values: "normal, bold, 100–900", demo: "<span style='font-weight:700'>Bold weight</span>" },
+      { prop: "line-height", desc: "Sets the vertical spacing between lines of text.", syntax: "line-height: 1.6;", values: "unitless number, px, %", demo: "<div style='line-height:1.8;width:140px'>Spaced out line height demo text</div>" },
+      { prop: "text-align", desc: "Aligns inline text content within its container.", syntax: "text-align: center;", values: "left, right, center, justify", demo: "<div style='text-align:center;background:#22303d;border-radius:4px;padding:4px'>centered</div>" },
+      { prop: "text-decoration", shorthand: true, desc: "Adds or removes lines like underline or strikethrough on text.", syntax: "text-decoration: underline;", values: "none, underline, line-through, overline", demo: "<span style='text-decoration:underline'>Underlined</span>" },
+      { prop: "letter-spacing", desc: "Adjusts the horizontal spacing between characters.", syntax: "letter-spacing: 0.08em;", values: "px, em, normal", demo: "<span style='letter-spacing:0.15em'>SPACED OUT</span>" },
+      { prop: "text-transform", desc: "Changes the capitalization of text.", syntax: "text-transform: uppercase;", values: "none, uppercase, lowercase, capitalize", demo: "<span style='text-transform:uppercase'>shout this</span>" },
+      { prop: "white-space", desc: "Controls how whitespace and line breaks are handled.", syntax: "white-space: nowrap;", values: "normal, nowrap, pre, pre-wrap", demo: "" },
+      { prop: "text-overflow", desc: "Defines how clipped text is signaled, usually with an ellipsis.", syntax: "text-overflow: ellipsis;", values: "clip, ellipsis", demo: "<div style='width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#22303d;padding:4px;border-radius:4px'>A very long line of text</div>" },
+    ],
+  },
+  {
+    category: "Color & Background",
+    properties: [
+      { prop: "color", desc: "Sets the color of an element's text.", syntax: "color: #ff8c42;", values: "named color, hex, rgb(), hsl()", demo: "<span style='color:#ff8c42'>Colored text</span>" },
+      { prop: "background-color", desc: "Sets the solid background color of an element.", syntax: "background-color: #1a212b;", values: "named color, hex, rgb(), transparent", demo: "<div style='background-color:#ff8c42;padding:8px;border-radius:4px;color:#11161c'>filled box</div>" },
+      { prop: "background-image", desc: "Sets an image or gradient as an element's background.", syntax: "background-image: url('bg.jpg');", values: "url(), linear-gradient(), none", demo: "<div style='background-image:linear-gradient(135deg,#ff8c42,#22303d);height:32px;border-radius:4px'></div>" },
+      { prop: "background-size", desc: "Scales a background image within its container.", syntax: "background-size: cover;", values: "cover, contain, px, %", demo: "" },
+      { prop: "background-position", desc: "Positions a background image within its container.", syntax: "background-position: center;", values: "top, center, bottom, px %", demo: "" },
+      { prop: "background-repeat", desc: "Controls whether a background image tiles or repeats.", syntax: "background-repeat: no-repeat;", values: "repeat, no-repeat, repeat-x, repeat-y", demo: "" },
+      { prop: "opacity", desc: "Sets the transparency of an entire element.", syntax: "opacity: 0.6;", values: "0 to 1", demo: "<div style='opacity:0.5;background:#ff8c42;padding:8px;border-radius:4px;color:#11161c'>faded box</div>" },
+      { prop: "background", shorthand: true, desc: "Shorthand for setting color, image, position, size, and repeat at once.", syntax: "background: #1a212b url('bg.jpg') center/cover;", values: "color image position/size repeat", demo: "" },
+    ],
+  },
+  {
+    category: "Border & Effects",
+    properties: [
+      { prop: "border-radius", desc: "Rounds the corners of an element's border box.", syntax: "border-radius: 12px;", values: "px, %, 50% for circles", demo: "<div style='border-radius:50%;width:32px;height:32px;background:#ff8c42'></div>" },
+      { prop: "border-style", desc: "Sets the line style of a border.", syntax: "border-style: dashed;", values: "solid, dashed, dotted, double, none", demo: "<div style='border:2px dashed #ff8c42;padding:8px;border-radius:4px'>dashed</div>" },
+      { prop: "border-width", desc: "Sets the thickness of a border.", syntax: "border-width: 3px;", values: "px, thin, medium, thick", demo: "" },
+      { prop: "border-color", desc: "Sets the color of a border.", syntax: "border-color: #ff8c42;", values: "named color, hex, rgb()", demo: "" },
+      { prop: "outline", shorthand: true, desc: "Draws a line around an element outside its border, often for focus states.", syntax: "outline: 2px solid #ff8c42;", values: "width style color", demo: "<div style='outline:2px solid #ff8c42;outline-offset:2px;padding:8px;border-radius:4px'>focused</div>" },
+      { prop: "box-shadow", desc: "Adds a drop shadow around an element's box.", syntax: "box-shadow: 0 4px 12px rgba(0,0,0,0.4);", values: "x-offset y-offset blur spread color", demo: "<div style='box-shadow:0 4px 12px rgba(0,0,0,0.5);background:#22303d;padding:10px;border-radius:6px'>elevated</div>" },
+      { prop: "text-shadow", desc: "Adds a shadow behind text characters.", syntax: "text-shadow: 1px 1px 3px black;", values: "x-offset y-offset blur color", demo: "<span style='text-shadow:0 2px 4px rgba(0,0,0,0.7);color:#ff8c42'>shadowed text</span>" },
+      { prop: "filter", desc: "Applies graphical effects like blur or brightness to an element.", syntax: "filter: blur(3px);", values: "blur(), brightness(), grayscale(), none", demo: "<div style='filter:grayscale(1);background:#ff8c42;padding:8px;border-radius:4px;color:#11161c'>grayscale</div>" },
+    ],
+  },
+  {
+    category: "Display & Position",
+    properties: [
+      { prop: "display", desc: "Determines how an element generates boxes and lays out, like block or flex.", syntax: "display: flex;", values: "block, inline, flex, grid, none", demo: "" },
+      { prop: "position", desc: "Sets how an element is positioned relative to its normal flow.", syntax: "position: relative;", values: "static, relative, absolute, fixed, sticky", demo: "" },
+      { prop: "inset", shorthand: true, desc: "Shorthand for top, right, bottom, and left positioning offsets.", syntax: "inset: 0;", values: "px, %, shorthand for top/right/bottom/left", demo: "" },
+      { prop: "z-index", desc: "Controls the stacking order of overlapping elements.", syntax: "z-index: 10;", values: "integer, auto", demo: "" },
+      { prop: "float", desc: "Pulls an element to one side, letting text wrap around it.", syntax: "float: left;", values: "left, right, none", demo: "" },
+      { prop: "clear", desc: "Stops an element from sitting beside a floated element.", syntax: "clear: both;", values: "left, right, both, none", demo: "" },
+      { prop: "overflow", desc: "Controls what happens to content that exceeds its container.", syntax: "overflow: hidden;", values: "visible, hidden, scroll, auto", demo: "<div style='width:80px;height:24px;overflow:hidden;background:#22303d;border-radius:4px;padding:4px'>This text overflows its box</div>" },
+      { prop: "visibility", desc: "Hides an element while still reserving its layout space.", syntax: "visibility: hidden;", values: "visible, hidden, collapse", demo: "" },
+    ],
+  },
+  {
+    category: "Flexbox",
+    properties: [
+      { prop: "flex-direction", desc: "Sets the main axis direction of a flex container's items.", syntax: "flex-direction: row;", values: "row, column, row-reverse, column-reverse", demo: "<div style='display:flex;gap:6px'><div style='width:18px;height:18px;background:#ff8c42;border-radius:3px'></div><div style='width:18px;height:18px;background:#ff8c42;border-radius:3px'></div></div>" },
+      { prop: "justify-content", desc: "Aligns flex items along the main axis.", syntax: "justify-content: space-between;", values: "flex-start, center, space-between, space-around", demo: "<div style='display:flex;justify-content:space-between;background:#22303d;padding:4px;border-radius:4px'><span style='width:14px;height:14px;background:#ff8c42;border-radius:3px;display:block'></span><span style='width:14px;height:14px;background:#ff8c42;border-radius:3px;display:block'></span></div>" },
+      { prop: "align-items", desc: "Aligns flex items along the cross axis.", syntax: "align-items: center;", values: "stretch, flex-start, center, flex-end", demo: "<div style='display:flex;align-items:center;height:40px;background:#22303d;border-radius:4px;gap:6px;padding:0 6px'><div style='width:14px;height:14px;background:#ff8c42;border-radius:3px'></div><div style='width:14px;height:26px;background:#ff8c42;border-radius:3px'></div></div>" },
+      { prop: "align-content", desc: "Aligns groups of flex lines along the cross axis when wrapping.", syntax: "align-content: space-between;", values: "flex-start, center, space-between, stretch", demo: "" },
+      { prop: "flex-wrap", desc: "Allows flex items to wrap onto multiple lines.", syntax: "flex-wrap: wrap;", values: "nowrap, wrap, wrap-reverse", demo: "" },
+      { prop: "gap", desc: "Sets spacing between flex or grid items.", syntax: "gap: 12px;", values: "px, %, row-gap column-gap", demo: "<div style='display:flex;gap:10px'><div style='width:16px;height:16px;background:#ff8c42;border-radius:3px'></div><div style='width:16px;height:16px;background:#ff8c42;border-radius:3px'></div><div style='width:16px;height:16px;background:#ff8c42;border-radius:3px'></div></div>" },
+      { prop: "flex", shorthand: true, desc: "Shorthand controlling how a flex item grows, shrinks, and its base size.", syntax: "flex: 1 1 auto;", values: "flex-grow flex-shrink flex-basis", demo: "" },
+      { prop: "flex-grow", desc: "Sets how much a flex item expands to fill extra space.", syntax: "flex-grow: 1;", values: "number, default 0", demo: "" },
+      { prop: "flex-shrink", desc: "Sets how much a flex item shrinks when space is tight.", syntax: "flex-shrink: 0;", values: "number, default 1", demo: "" },
+      { prop: "order", desc: "Reorders a flex item visually without changing the markup.", syntax: "order: -1;", values: "integer, default 0", demo: "" },
+    ],
+  },
+  {
+    category: "Grid",
+    properties: [
+      { prop: "grid-template-columns", desc: "Defines the number and width of grid columns.", syntax: "grid-template-columns: repeat(3, 1fr);", values: "px, fr, repeat(), auto", demo: "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:5px'><div style='background:#ff8c42;height:16px;border-radius:3px'></div><div style='background:#ff8c42;height:16px;border-radius:3px'></div><div style='background:#ff8c42;height:16px;border-radius:3px'></div></div>" },
+      { prop: "grid-template-rows", desc: "Defines the number and height of grid rows.", syntax: "grid-template-rows: 80px auto;", values: "px, fr, auto", demo: "" },
+      { prop: "grid-template-areas", desc: "Names regions of a grid for placing items by area name.", syntax: "grid-template-areas: 'header header' 'sidebar main';", values: "quoted area name strings", demo: "" },
+      { prop: "grid-column", desc: "Places an item across specific grid columns.", syntax: "grid-column: 1 / 3;", values: "line numbers, span n", demo: "" },
+      { prop: "grid-row", desc: "Places an item across specific grid rows.", syntax: "grid-row: 1 / 2;", values: "line numbers, span n", demo: "" },
+      { prop: "place-items", shorthand: true, desc: "Shorthand aligning grid items on both axes at once.", syntax: "place-items: center;", values: "align-items justify-items", demo: "" },
+      { prop: "place-content", shorthand: true, desc: "Shorthand aligning grid content along both axes at once.", syntax: "place-content: center;", values: "align-content justify-content", demo: "" },
+      { prop: "justify-items", desc: "Aligns grid items along the row (inline) axis.", syntax: "justify-items: center;", values: "start, center, end, stretch", demo: "" },
+    ],
+  },
+  {
+    category: "Transform & Animation",
+    properties: [
+      { prop: "transform", desc: "Moves, rotates, scales, or skews an element without affecting layout.", syntax: "transform: rotate(8deg);", values: "translate(), rotate(), scale(), skew()", demo: "<div style='transform:rotate(-6deg);background:#ff8c42;padding:8px;border-radius:4px;display:inline-block;color:#11161c'>tilted</div>" },
+      { prop: "transform-origin", desc: "Sets the pivot point a transform is applied around.", syntax: "transform-origin: top left;", values: "top, center, bottom, px %", demo: "" },
+      { prop: "transition", shorthand: true, desc: "Animates a property smoothly between values over a duration.", syntax: "transition: background-color 0.3s ease;", values: "property duration timing-function delay", demo: "" },
+      { prop: "animation", shorthand: true, desc: "Shorthand applying a named keyframe animation to an element.", syntax: "animation: spin 2s linear infinite;", values: "name duration timing-function iteration-count", demo: "" },
+      { prop: "@keyframes", desc: "Defines the steps of a custom animation sequence.", syntax: "@keyframes spin { to { transform: rotate(360deg); } }", values: "from/to or percentage steps", demo: "" },
+      { prop: "animation-delay", desc: "Sets a pause before an animation starts.", syntax: "animation-delay: 0.5s;", values: "s, ms", demo: "" },
+      { prop: "animation-iteration-count", desc: "Sets how many times an animation repeats.", syntax: "animation-iteration-count: infinite;", values: "number, infinite", demo: "" },
+      { prop: "will-change", desc: "Hints to the browser which property is about to change, for smoother performance.", syntax: "will-change: transform;", values: "auto, transform, opacity, scroll-position", demo: "" },
+    ],
+  },
+  {
+    category: "Misc & Modern",
+    properties: [
+      { prop: "cursor", desc: "Sets the mouse cursor shown when hovering an element.", syntax: "cursor: pointer;", values: "default, pointer, grab, not-allowed", demo: "<button style='cursor:pointer;background:#ff8c42;border:none;padding:6px 12px;border-radius:4px;font-weight:600;color:#11161c'>hover me</button>" },
+      { prop: "pointer-events", desc: "Controls whether an element can be the target of mouse events.", syntax: "pointer-events: none;", values: "auto, none", demo: "" },
+      { prop: "object-fit", desc: "Controls how an image or video fills its container.", syntax: "object-fit: cover;", values: "fill, contain, cover, none", demo: "" },
+      { prop: "aspect-ratio", desc: "Sets a preferred width-to-height ratio for an element.", syntax: "aspect-ratio: 16 / 9;", values: "width / height", demo: "<div style='aspect-ratio:16/9;width:90px;background:#ff8c42;border-radius:4px'></div>" },
+      { prop: "backdrop-filter", desc: "Applies graphical effects to the area behind an element, like a frosted glass blur.", syntax: "backdrop-filter: blur(10px);", values: "blur(), brightness(), none", demo: "" },
+      { prop: "user-select", desc: "Controls whether text can be selected by the user.", syntax: "user-select: none;", values: "auto, none, text, all", demo: "" },
+      { prop: "resize", desc: "Lets the user manually resize an element by dragging its corner.", syntax: "resize: vertical;", values: "none, both, horizontal, vertical", demo: "" },
+      { prop: "scroll-behavior", desc: "Sets whether scrolling jumps instantly or animates smoothly.", syntax: "scroll-behavior: smooth;", values: "auto, smooth", demo: "" },
+    ],
+  },
+];
